@@ -1,0 +1,104 @@
+\documentclass[12 pt]{article}
+\hbadness=10
+
+
+\usepackage{amsmath, amssymb, amsfonts, setspace, stmaryrd, amsthm, graphicx, tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usetikzlibrary{positioning}% To get more advanced positioning options
+\usetikzlibrary{arrows}% To get more arrow heads
+\usepackage{hyperref} % Allows to make references and links clickable
+
+\usepackage[margin=1.5in]{geometry}
+\newtheorem{theorem}{Theorem}
+%%align* environment
+\newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
+
+%Math commands
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\C}{\mathbb{C}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+
+\renewcommand\abstractname{Introduction}
+
+\newcounter{exercise}[section]
+\newenvironment{exercise}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+	\noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
+	
+
+\newenvironment{bonus}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+	\noindent \textbf{*Bonus Exercise*~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
+	 
+
+
+\title{Cryptographic Secret Sharing}
+\author{Girls Talk Math}
+\date{}
+
+\begin{document}
+\maketitle
+\vskip 1in
+\begin{center} \textbf{Introduction} \end{center}
+
+\indent In this problem set, you will learn about ...
+    
+    One last note about reading mathematical texts: it is very normal when reading math to read a passage or even a single sentence several times before understanding it properly. Also, never trust the author! Check every claim and calculation (time permitting). Take your time and never give up. Let's talk math!
+	
+\newpage
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%% Use \section{}, \subsection{}, etc. for different parts of the problem set. Start a newpage for a new section
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Embed exercises in section as appropriate 
+%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+
+\section{Probability and Randomness}
+
+\subsection{Introduction}
+
+\subsection{Randomness in Cryptography}
+
+\subsection{Sharing Secrets}
+\emph{Secret sharing} is a way to...
+
+\section{A simple secret sharing}
+
+\subsection{Binary Arithmetic}
+
+The exclusive-OR (XOR) operation is denoted by the symbol $\oplus$ and defined by the following truth table:
+
+\begin{center}
+\begin{tabular}{c|c|c}
+    $a$ & $b$ & $a \oplus b$\\\hline
+    0 & 0 & 0\\
+    0 & 1 & 1\\
+    1 & 0 & 1\\
+    1 & 1 & 0
+\end{tabular}
+\end{center}
+
+\subsection{Sharing Secrets using XOR}
+
+\newpage
+\section{Shamir's Secret Sharing}
+\subsection{Polynomials}
+\subsubsection{Uniqueness}
+
+\begin{exercise}
+\end{exercise}
+
+\subsection{Sharing Secrets Using Polynomials}
+
+\end{document}
