@@ -7,5 +7,8 @@
 *.synctex.gz
 *.toc
 
+# Jupyter
+.ipynb_checkpoints
+
 # MacOS
 .DS_Store

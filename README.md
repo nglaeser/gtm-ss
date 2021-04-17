@@ -9,5 +9,5 @@
 ## Packet
 
 - Packet ([source](packet/main.tex) | [pdf](packet/main.pdf)): for [Girls Talk Math Camp 2021](http://gtm.math.umd.edu/virtualcamp2021.html) at UMD
-    - General outline of the TeX file ripped from [this other GTM packet](https://github.com/Girls-Talk-Math/curriculum/tree/master/RSA-Encryption-Cryptography)
-- [`secret_sharing.ipynb`](): Jupyter notebook to complement the information presented in the packet.
+    - General outline of the TeX file stolen from [this other GTM packet](https://github.com/Girls-Talk-Math/curriculum/tree/master/RSA-Encryption-Cryptography)
+- [`secret_sharing.ipynb`](packet/secret_sharing.ipynb): Jupyter notebook to complement the information presented in the packet.

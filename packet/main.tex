@@ -22,6 +22,12 @@
 \DeclareMathOperator{\N}{\mathbb{N}}
 \DeclareMathOperator{\Q}{\mathbb{Q}}
 
+%Crypto commands
+\newcommand{\sample}{\hskip2.3pt{\gets\!\!\mbox{\tiny${\$}$\normalsize}}\,}
+
+%comments
+\newcommand{\nsm}[1]{\textcolor{teal}{(NG: #1)}}
+
 \renewcommand\abstractname{Introduction}
 
 \newcounter{exercise}[section]
@@ -69,10 +75,13 @@
 \subsection{Introduction}
 
 \subsection{Randomness in Cryptography}
-Define \emph{information-theoretic security}.
+\nsm{Define \emph{information-theoretic security}.
+Define what a security parameter is ($\lambda$).}
 
 \subsection{Sharing Secrets}
-\emph{Secret sharing} is a way to...
+\emph{Secret sharing} is a way to ``split'' a secret value (call it $s$) into pieces. When we distribute those pieces among a large set of people, and some subset (or maybe the whole set) can recover the secret only if they pool their information (their shares).
+
+\nsm{Define the privacy property and the cryptographic privacy game? The goal can be to have a (bonus) exercise in which they write a real cryptographic proof of privacy of a secret sharing scheme (likely the XOR scheme).}
 
 \newpage
 \section{A simple secret sharing}
@@ -91,20 +100,45 @@ The exclusive-OR (XOR) operation is denoted by the symbol $\oplus$ and defined b
 \end{tabular}
 \end{center}
 
+\nsm{explain binary representations of numbers and binary arithmetic.}
+
 \subsection{Sharing Secrets using XOR}
+
+\begin{align*}
+    & \underline{\textsf{Share}(s)} \\
+    & s_1 \sample \{1, \ldots, 2^\lambda\} \\
+    & \textsf{return}~ (s_1, s \oplus s_2)
+\end{align*}
+
+\begin{align*}
+    & \underline{\textsf{Reconstruct}(s_1, s_2)} \\
+    & \textsf{return}~ s_1 \oplus s_2
+\end{align*}
+
+\subsubsection{Proving Security*}
+\nsm{Optional section. Introduce the privacy game, have them act as the adversary and try to beat the privacy and get some intuition about why it's hard, then work through a simple proof.}
 
 \newpage
 \section{Shamir's Secret Sharing}
+
 \subsection{Polynomials}
-y-intercept, zeroes
+\nsm{y-intercept, zeroes}
 
 \subsubsection{Uniqueness}
-How many points uniquely define a polynomial
+\nsm{How many points uniquely define a polynomial}
+
+\subsubsection{Lagrange Interpolation}
 
 \begin{exercise}
+    \nsm{Practice some manual Lagrange interpolation. Pick a polynomial, evaluate it at 3 points, then use those 3 points in Lagrance Interpolation and recover the polynomial.}
 \end{exercise}
 
 \subsection{Sharing Secrets Using Polynomials}
-Don't introduce finite fields but maybe make a note that this should be done over finite fields.
+
+Shamir secret sharing is a $(t+1)$-out-of-$n$ secret sharing protocol, for some numbers $t$ and $n$. This means that we split the secret $s$ into $n$ values and distribute them to $n$ people. Then, at least $t+1$ of those people must work together to recover $s$.
+
+\nsm{Don't introduce finite fields but maybe make a note that this should be done over finite fields.}
+
+\nsm{Use the Jupyter Notebook to play around with this.}
 
 \end{document}
