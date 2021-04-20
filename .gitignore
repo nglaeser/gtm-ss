@@ -10,5 +10,12 @@
 # Jupyter
 .ipynb_checkpoints
 
+# Python
+__pycache__
+
 # MacOS
 .DS_Store
+
+##########
+# don't sync
+*.key
