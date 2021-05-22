@@ -47,7 +47,42 @@ def eval_poly(coeffs, x):
     # (note this is not secure)
     return ans
 
-def interpolate(points, degree):
-    # Lagrange interpolation
-    coeffs = []
-    return coeffs
+# Lagrange interpolation
+def interpolate_at(points, x_value):
+    # Lagrange basis polynomials evaluated at 0
+    ell = [1]*len(points)
+    for i in range(len(points)):
+        for j in range(len(points)):
+            if i!=j:
+                ell[i] *= float(x_value-points[j][0])/(points[i][0]-points[j][0])
+
+    # f(X) = sum_1^{t+1} ell_i(X) * y_i
+    # y = f(x_value)
+    y = 0
+    for i in range(len(points)):
+        y += ell[i]*points[i][1]
+    return y
+
+######## convert between message and arr of numbers ########
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+def convert_msg(string):
+    arr = []
+    for c in string.lower():
+        try:
+            i = alphabet.index(c)+1
+            arr.append(i)
+        except:
+            continue
+    return arr
+
+def nums_to_msg(arr):
+    msg = ""
+    for num in arr:
+        try:
+            msg += alphabet[num-1]
+        except Exception as e:
+            print("nums_to_msg: ERROR {} ({} is <1 or >26). Make sure you provided at least t+1 shares to the reconstruction function".format(e, num))
+#             msg += "¿"
+#             continue
+            return
+    return msg
