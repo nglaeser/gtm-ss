@@ -1,7 +1,8 @@
 from numpy import linspace
 from random import randint
-from sympy import isprime
+from sympy import isprime, nextprime
 from matplotlib.pyplot import plot, scatter
+from scipy.interpolate import lagrange
 
 ######## polynomial stuff ########
 def term_to_string(coeff, deg):
@@ -48,6 +49,11 @@ def eval_poly(coeffs, x):
     return ans
 
 # Lagrange interpolation
+def interpolate(points):
+    f = lagrange([p[0] for p in points], [p[1] for p in points])
+    return f
+
+# Lagrange interpolation at a point
 def interpolate_at(points, x_value):
     # Lagrange basis polynomials evaluated at 0
     ell = [1]*len(points)
