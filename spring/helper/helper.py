@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from numpy import linspace
 from random import randint
 from sympy import isprime, nextprime

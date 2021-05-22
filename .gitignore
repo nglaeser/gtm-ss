@@ -17,5 +17,6 @@ __pycache__
 .DS_Store
 
 ##########
-# don't sync
+# don't sync presentation
 *.key
+images/
