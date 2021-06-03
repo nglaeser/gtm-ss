@@ -12,6 +12,7 @@
 
 \usepackage[margin=1.5in]{geometry}
 \newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
 %%align* environment
 \newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
 
@@ -23,22 +24,29 @@
 \DeclareMathOperator{\Q}{\mathbb{Q}}
 
 %Crypto commands
+\usepackage{cryptocode}
 \newcommand{\sample}{\hskip2.3pt{\gets\!\!\mbox{\tiny${\$}$\normalsize}}\,}
+\def\D{\ensuremath{\mathcal{D}}}
+\def\A{\ensuremath{\mathcal{A}}}
+\def\ss{\ensuremath{\mathcal{S}}}
+\def\bin{\ensuremath{\{0, 1\}}}
 
 %comments
 \newcommand{\nsm}[1]{\textcolor{teal}{(NG: #1)}}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
 
 \renewcommand\abstractname{Introduction}
 
 \newcounter{exercise}[section]
 \newenvironment{exercise}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
-	\noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
-	
+    \noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
 
 \newenvironment{bonus}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
-	\noindent \textbf{*Bonus Exercise*~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
-	 
+    \noindent \textbf{*Bonus Exercise*~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
 
+\newcounter{example}[section]
+\newenvironment{example}{\refstepcounter{example}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{Example~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
 
 \title{Cryptographic Secret Sharing}
 \author{Girls Talk Math}
@@ -73,15 +81,77 @@
 \section{Probability and Randomness}
 
 \subsection{Introduction}
+\nsm{Define probability, define what it means to be 
+random. Introduce basic notation.}
 
 \subsection{Randomness in Cryptography}
 \nsm{Define \emph{information-theoretic security}.
 Define what a security parameter is ($\lambda$).}
 
 \subsection{Sharing Secrets}
-\emph{Secret sharing} is a way to ``split'' a secret value (call it $s$) into pieces. When we distribute those pieces among a large set of people, and some subset (or maybe the whole set) can recover the secret only if they pool their information (their shares).
+\emph{Secret sharing} is a way to ``split'' a secret value (call it $x$) into pieces, called \emph{shares}. 
+Two useful properties a secret-sharing might have are \emph{correctness} and 
+\emph{privacy}. Informally, correctness means that if we put shares back together, 
+we get back the original secret; privacy says that each share by itself reveals 
+nothing about the secret $x$. 
+
+These properties are important for practical uses of secret sharing, for 
+example distributing shares among a large set of people so that no one 
+knows the secret but some subset of them can recover the secret if they 
+pool their information.
+
+\begin{example}
+    \nsm{Simple additive secret-sharing.}
+\end{example}
+
+Let's be a little more rigorous about these definitions, using the standard
+notation in cryptography. First, we'll define what a secret sharing scheme 
+does without giving implementation details (there could be multiple ways 
+of achieving the same thing, after all).
+
+\def\share{\ensuremath{\mathsf{Share}}}
+\def\rec{\ensuremath{\mathsf{Rec}}}
+\begin{definition}[Secret sharing scheme]
+    Let $\D$ be the input domain and $\D_s$ be the share domain.
+    A secret sharing scheme is a pair of efficient algorithms $(\share, \rec)$
+    such that
+
+    \begin{itemize}
+        \item \share~takes as input a secret $x \in \D$ and two numbers $t, n$ 
+        and outputs $n$ shares in $\D_s$.
+        \item \rec~takes as input $m$ shares $s_1, \ldots, s_m \in D_s$. 
+        If $m < t$, it outputs a special symbol $\perp$ indicating failure; 
+        otherwise, it outputs some value $y \in \D$.
+    \end{itemize}
+
+    The scheme is \emph{correct} if for all $x \in \D$, $\rec(\share(x)) = x$.
+\end{definition}
+
+Here's a visual representation:
+
+\nsm{Picture of two domains, with \share~ mapping in one direction and 
+\rec~ back in the other.}
+
+% \begin{definition}[secret-sharing scheme]
+%     A pair of polynomial-time algorithms $\Sigma = (\share, \recon)$ is a (two-party) secret-sharing scheme if
+%     \begin{itemize}
+%         \item $\share$ takes as input a security parameter $\secparam$ and a value $x$ in the domain $\mathcal{D}_\kappa$ associated with~$\kappa$ (e.g., $\mathcal{D}_\kappa = \bin^\kappa$) and outputs two shares $\sh_1, \sh_2$. We assume $\kappa$ is implicit in each share.
+%         \item $\recon$ takes as input two shares and outputs either a value $y \in \mathcal{D}_\kappa$ or a distinguished symbol $\perp$.
+%     \end{itemize}
+%     For correctness, we require that for all $\kappa$ and $x \in \mathcal{D}_\kappa$, $\recon(\share(\secparam, x)) = x$.
+% \end{definition}
 
 \nsm{Define the privacy property and the cryptographic privacy game? The goal can be to have a (bonus) exercise in which they write a real cryptographic proof of privacy of a secret sharing scheme (likely the XOR scheme).}
+
+\begin{example}
+    \nsm{Secret sharing without correctness.}
+\end{example}
+
+\begin{exercise}
+    \nsm{Is this scheme private?}
+\end{exercise}
+
+In the next sections, we'll see some examples of private secret sharing schemes.
 
 \newpage
 \section{A simple secret sharing}
@@ -102,6 +172,46 @@ The exclusive-OR (XOR) operation is denoted by the symbol $\oplus$ and defined b
 
 \nsm{explain binary representations of numbers and binary arithmetic.}
 
+\begin{exercise}
+    Write the following numbers in binary.
+    \begin{enumerate}\renewcommand{\labelenumi}{\arabic{enumi})}
+        \item 5
+        \item 12
+        \item 15
+        \item 16
+        \item 23
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Convert the following numbers to base 10.
+    \begin{enumerate}\renewcommand{\labelenumi}{\arabic{enumi})}
+        \item 11
+        \item 110
+        \item 1001
+        \item 11110
+        \item 110101
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \begin{enumerate}\renewcommand{\labelenumi}{\arabic{enumi})}
+        \item $101 \oplus 110$
+        \item $1 \oplus 111$
+        \item $1101001 \oplus 0010110$
+        \item $1101001 \oplus 1101001$
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    \begin{enumerate}\renewcommand{\labelenumi}{\arabic{enumi})}
+        \item $4 \oplus 5$
+        \item $11 \oplus 1$
+        \item $8 \oplus 4$
+        \item $7 \oplus 3$
+    \end{enumerate}
+\end{exercise}
+
 \subsection{Sharing Secrets using XOR}
 
 \begin{align*}
@@ -115,8 +225,112 @@ The exclusive-OR (XOR) operation is denoted by the symbol $\oplus$ and defined b
     & \textsf{return}~ s_1 \oplus s_2
 \end{align*}
 
+\begin{exercise}
+    Pick your favorite number and use the \share~algorithm defined above 
+    to secret share it.
+\end{exercise}
+
+\begin{exercise}
+    What is $\rec(14, 21, 49)$?
+\end{exercise}
+
 \subsubsection{Proving Security*}
 \nsm{Optional section. Introduce the privacy game, have them act as the adversary and try to beat the privacy and get some intuition about why it's hard, then work through a simple proof.}
+
+In cryptography, security properties like privacy are defined using what 
+are called ``games''. A game is a challenge in which an attacker (called 
+the \emph{adversary} and usually denoted by a curly $\mathcal{A}$) is given 
+some information and has the goal of providing an answer that somehow 
+breaks the security property of a scheme. 
+
+For example, in the case of privacy for a secret sharing scheme, we give 
+the attacker a share and ask it to give us some information about the 
+secret it came from. This should be almost impossible if the scheme is 
+private.
+
+Here is the \emph{privacy game} for any secret sharing scheme $\ss = (\share, \rec)$:
+\begin{enumerate}
+    \item The adversary \A~picks two values $x_0, x_1$ and a number $i$ 
+    between 1 and $n$.
+    \item The game flips a coin to randomly choose one of those two values.
+    This is usually written as picking a random value $b$ from the set 
+    $\{0, 1\}$.
+    \item Now the game runs the \share~algorithm on this randomly chosen 
+    value $x_b$ to get shares $s_1, \ldots, s_m$. It gives the $i$th share
+    to \A.
+    \item \A~tries to guess which of the two values $x_0, x_1$ were shared.
+    More specifically, it outputs a guess $b' \in \{0, 1\}$. 
+    \item If $b=b'$, we say the result of the game is 1 (to signify 
+    \textbf{true} or \textbf{success}), in which case we say that \A~``wins''
+    the game; otherwise, it's 0.
+\end{enumerate}
+
+In cryptography, these games are generally written much more compactly by 
+using symbols. The privacy game above would be written as follows (without 
+the comments, which are there to explain the notation):
+
+\bigskip
+\begin{center}\fbox{%
+\pseudocode[syntaxhighlight=auto,head=SS-priv$_{\A,\ss}$]{% (t,n)
+    (x_0, x_1, i) \leftarrow \A
+    ~\pccomment{get input values from $\A$} \\
+    b \sample \bin 
+    ~\pccomment{pick value to share at random} \\
+    s_1, \ldots, s_m \gets \share(x_b, t, n) 
+    ~\pccomment{share the chosen value} \\
+    b' \gets \A(s_i) 
+    ~\pccomment{$\A$ uses the $i$th share to guess $b'$} \\
+    return b=b' 
+    ~\pccomment{return 1 if $b=b'$ and 0 otherwise}
+}
+}\end{center}
+
+% \begin{center}\begin{minipage}{0.5\textwidth}
+%     \begin{algorithmic}
+%         \STATE $(x_0,x_1, i) \leftarrow \A(\secparam)$
+%         \STATE $b \sample \bin$
+%         \STATE $(\sh_{b,1}, \sh_{b,2}) \leftarrow \share(\secparam, x_b)$
+%         \STATE $b' \leftarrow \A(\sh_{b,i})$ 
+%         \RETURN $b = b'$
+%     \end{algorithmic}\end{minipage}\end{center}
+
+\begin{exercise}
+    \todo{With a partner, play through the security a couple times using the 
+    XOR secret sharing scheme. One of you should take on the role of the 
+    game while the other acts as the adversary. After you've done this a 
+    couple of times, switch roles and repeat.}
+
+    How successful was the adversary? If you were the adversary, what was 
+    difficult about your role? What was the key part of the scheme that 
+    ensured privacy?
+
+    \nsm{Maybe try again with another scheme that is not deterministic but 
+    gives the adversary >1/2 odds of winning?}
+\end{exercise}
+
+Now that we have an idea of why the game is difficult to win consistently, 
+let's rigorously define privacy by specifying how often the attacker should 
+be able to win: 
+
+\begin{definition}[secret sharing privacy]
+    A secret sharing scheme $\ss = (\share,\allowbreak \rec)$ is \emph{private} if,
+    for all realistic\footnotemark adversaries \A,
+    \footnotetext{In cryptography we usually consider what are called 
+    \emph{probabilistic polynomial-time}, or PPT, adversaries.}
+
+    \[
+        \Pr[\textnormal{SS-priv}_{\A,\ss}(t,n) = 1] - \frac{1}{2}
+    \]
+
+    is small\footnotemark.
+    \footnotetext{\todo{bounded by a \emph{negligible} function.}}
+\end{definition}
+
+What does this actually mean? No matter what adversary \A~we are dealing with, 
+\todo{the probability that it can win the privacy game should be very close
+to one-half}, which is what it should be if \A~were to randomly guess which 
+value was shared.
+
 
 \newpage
 \section{Shamir's Secret Sharing}
