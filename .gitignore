@@ -6,6 +6,9 @@
 *.out
 *.synctex.gz
 *.toc
+*.auxlock
+*.bbl
+*.blg
 
 # Jupyter
 .ipynb_checkpoints
