@@ -167,8 +167,8 @@ distribution of a coin toss; on the right, the probability distribution
 of a dice roll. Notice that in both cases, the probabilities sum to 1.
 
 \begin{figure}[h]
-    \includegraphics[width=.5\linewidth]{coin-pie.png}
-    \includegraphics[width=.5\linewidth]{die-pie.png}
+    \includegraphics[width=.5\linewidth]{imgs/coin-pie.png}
+    \includegraphics[width=.5\linewidth]{imgs/die-pie.png}
     % \caption{Left: probability distribution of a coin toss. Right: 
     % probability distribution of a dice roll. Probabilities always 
     % sum to 1.}
@@ -179,12 +179,12 @@ of a dice roll. Notice that in both cases, the probabilities sum to 1.
 their probabilities. For example, what's the probability of rolling a 
 multiple of 2 or a multiple of 3? These are not mutually exclusive
 events, since 6 is a multiple of \emph{both} 2 and 3! Instead, we need 
-to break this question into mutually exclusive events. For example, we 
-could consider the probability of rolling a multiple of two, and add 
-this to the probability of rolling a 3: by doing this, we still cover 
-all the possible outcomes (2, 3, 4, and 6) but broken into mutually 
-exclusive events ($\{2,4,6\}$ or $\{3\}$) instead of overlapping events 
-($\{2, 4, 6\}$ or $\{3, 6\}$). Then}
+to break this question into mutually exclusive events. We could consider 
+the probability of rolling a multiple of two, and add this to the 
+probability of rolling a 3: by doing this, we still cover all the 
+possible outcomes (2, 3, 4, and 6) but broken into mutually exclusive 
+events ($\{2,4,6\}$ or $\{3\}$) instead of overlapping events ($\{2, 4, 
+6\}$ or $\{3, 6\}$). Then}
 
 \begin{align*}
     &\Pr[d \text{ is a multiple of 2 or 3}] \\
@@ -1076,7 +1076,7 @@ coefficients. Here's an example:
 The standard form for a polynomial in one variable, called a univariate polynomial, is 
 
 \begin{equation}\label{eqn:std-form}
-    a_n x^n + a_{n-2} x^{n-1} + \ldots + a_2 x^2 + a_1 x + a_0
+    a_n x^n + a_{n-1} x^{n-1} + \ldots + a_2 x^2 + a_1 x + a_0
 \end{equation}
 
 where the $a_n, \ldots, a_1$ are constant (fixed) values, usually integers, and $n$ 
@@ -1161,7 +1161,7 @@ the $y$-intercept is $a_0$.
 
 \subsubsection{Uniqueness}\label{sec:unique}
 
-An important property of polynomials that they can be uniquely defined 
+An important property of polynomials is that they can be uniquely defined 
 by a set of points of the right size. For example, two points uniquely 
 define a line:
 
