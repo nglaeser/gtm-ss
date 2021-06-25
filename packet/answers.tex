@@ -86,9 +86,28 @@
 \end{answer}
 
 \begin{answer}
-    \[
-        \Pr[c_1=H \text{ and } c_2=H] = \Pr[c_1=H] \cdot \Pr[c_2=H] = \frac{1}{2}\cdot \frac{1}{2} = \frac{1}{4}.
-    \]
+    Let $c_1$ and $c_2$ be random variables representing the first and second
+    coin toss, respectively. Since the coin tosses are independent, 
+    \begin{align*}
+        & \Pr[c_1=H \text{ and } c_2=H]\\
+        =& \Pr[c_1=H] \cdot \Pr[c_2=H]\\
+        =& \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}
+    \end{align*}
+\end{answer}
+
+\begin{answer}
+    There are two ways of getting one heads outcome: (1) the first toss is heads 
+    ($c_1=H$), and we don't do another coin toss, or (2) the first toss comes up tails,
+    and the second one comes up heads ($c_1=T$ and $c_2=H$). 
+    
+    \begin{align*}
+        & \Pr[c_1=H] + \Pr[c_1=T \text{ and } c_2=H]\\
+        =& \Pr[c_1=H] + \Pr[c_2=H] \cdot \Pr[c_1=T] 
+        \tag{coin tosses are independent events}\\
+        =& \frac{1}{2} + \frac{1}{2}\cdot\frac{1}{2}\\
+        =& \frac{1}{2} + \frac{1}{4}\\
+        =& \frac{3}{4}
+    \end{align*}
 \end{answer}
 
 \begin{answer}
@@ -218,7 +237,8 @@
     }
     \end{pchstack}
 
-    \nsm{A more exact version of \rec~would be this:}
+    \nsm{A more exact version of \rec~would be this, but I'm worried 
+    it introduces too much extra notation:}
 
     \begin{center}
     \procedure{$\rec(s_1, \ldots, s_m)$}{%
