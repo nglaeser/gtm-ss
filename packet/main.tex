@@ -26,6 +26,10 @@
 %%%% added by NG
 \usetikzlibrary{shapes,backgrounds,decorations,patterns}
 \usepackage{pgfplots}
+\usepackage{xurl}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 % externalize the figures
 % \usepgfplotslibrary{external
 % \tikzexternalize
@@ -41,7 +45,8 @@
 %comments
 \newcommand{\nsm}[1]{\textcolor{teal}{(NG: #1)}}
 \newcommand{\new}[1]{\textcolor{blue}{#1}}
-\newcommand{\todo}[1]{\textcolor{red}{#1}}
+% \newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\todo}[1]{#1}
 
 \renewcommand\abstractname{Introduction}
 
@@ -92,9 +97,13 @@ Optional sections are marked with an asterisk (*).
 
 \section{Probability and Randomness}\label{sec:prob}
 
-In mathematics, the word ``random'' has a more precise meaning that in everyday 
+In mathematics, the word ``random'' has a more precise meaning than in everyday 
 speech. Something is random if its outcome is governed by some \emph{probability 
-distribution}. For example, the outcome $c$ of a coin toss is not fixed, but takes 
+distribution}. 
+\nsm{Arghya: It might be helpful to delve into this a bit more, as some students might not be ready to recognize italicized font as being sort of  hint to the definition.
+Maybe drawing a diagram showing sample space {H,T} on the left, possible values of pdf {1/2, 1/2} on the right and distribution function being an arrow/assignment between the two sides would bring more clarity.}
+\nsm{I can't picture what you're describing; could you share a sketch?}
+For example, the outcome $c$ of a coin toss is not fixed, but takes 
 on one of the values in the set $\{H, T\}$, where $H$ means heads and $T$ means 
 tails. (This is called the \emph{sample space} of $c$.) We write 
 that $c \in \{H,T\}$, where the symbol $\in$ is read aloud as 
@@ -103,11 +112,50 @@ The value of $c$ is described by the distribution $\left\{\frac{1}{2},
 \frac{1}{2}\right\}$, which says that each outcome happens with 
 probability one-half.
 
+\begin{example}\label{ex:prob-dist}
+    Here are some other everyday probability distributions and their 
+    sample spaces:
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item The probability distribution of phone type used by Americans 
+        in 2021 over the sample space \{Android, iPhone, Other\} is $\{44.0\%\footnotemark[1],
+        46.9\%\footnotemark[2],9.1\%\}$.
+        \footnotetext[1]{
+            \url{https://www.statista.com/statistics/201182/forecast-of-smartphone-users-in-the-us/},
+            \url{https://www.statista.com/statistics/232786/forecast-of-andrioid-users-in-the-us/}
+        }
+        \footnotetext[2]{
+            \url{https://www.statista.com/statistics/236550/percentage-of-us-population-that-own-a-iphone-smartphone/}
+        }
+        \item The distribution over the outcomes of a dice roll $\{1,2,3,4,5,6\}$
+        is $\{\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6}\}$.
+    \end{enumerate}
+\end{example}
+
+\begin{exercise}
+    Write the sample space and probability distribution of each of 
+    the following random variables:
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item Card drawn from a shuffled deck.
+        \item Registration status of students at a 2000-person high school 
+        where all but 100 students register for classes every year.
+    \end{enumerate}
+\end{exercise}
+
 A variable like $c$ that represents an outcome or event is called a \emph{random 
 variable}, since it can take on one of several values based on an underlying 
 probability distribution. A random variable is \emph{uniformly random} if every possible 
-value is equally likely. In other words, its probability distribution is the 
-\emph{uniform distribution}. The variable $c$ is uniformly random (or simply \emph{uniform}).
+value is equally likely. We call this probability distribution the 
+\emph{uniform distribution}. The variable $c$ is uniformly random (or simply \emph{uniform})
+since $H$ and $T$ occur with equal probability, namely both with probability 
+$\frac{1}{2}$.
+% \new{Additionally, we can abbreviate the uniform probability distribution 
+% over $\{H,T\}$ as $U(H,T)$, where the $U$ stands for ``uniform''. \todo{since 
+% there are two elements in the parentheses, it's implied that each has probability 
+% $\frac{1}{2}$.}
+% This is especially useful in cases like part (b) of Example~\ref{ex:prob-dist},
+% where we can write the distribution much more compactly as $U(1,2,3,4,5,6)$.}
 
 \begin{exercise}
     Write ``uniform'' or ``not uniform'' for each of the following random variables:
@@ -330,9 +378,9 @@ used for the toss or the person doing the toss.
 In these cases, we say that $A$ and $B$ are \emph{independent} events, and 
 their corresponding random variables are independent. Then Equation~\ref{eqn:conditional_and}
 simplifies to 
-\[
+\begin{equation}\label{eq:and}
    \Pr[A \text{ and } B] = \Pr[A] \cdot \Pr[B]
-\]. 
+\end{equation}
 This means that for independet random variables, we can just multiply the probabilities 
 of two events together to get the probability that both events happen simultaneously.
 
@@ -340,8 +388,22 @@ of two events together to get the probability that both events happen simultaneo
     Suppose I roll a die and flip a coin. What's the probability that I roll a 1 
     \emph{and} get heads?
 
-    The dice and coin outcomes are independent, so we can multiply the probabilities
-    of the two events together the get the probability of both events occuring. Let 
+    \new{Our first instinct might be to list out all of the possible 
+    combinations of events; for each die roll, there is a tails and a 
+    heads option: }
+
+    \[
+        1H, 1T, 2H, 2T, 3H, 3T, 4H, 4T, 5H, 5T, 6H, 6T
+    \]
+
+    \new{Each of these outcomes occurs with equal probability, and there 
+    are twelve of them, so rolling a 1 and getting heads ($1H$) occurs 
+    with probability $\frac{1}{12}$.}
+
+    \new{If we realize that the dice and coin outcomes are independent, however,
+    we can get to this answer in a simpler way.} Looking at Equation~\ref{eq:and}, 
+    we see that we can multiply the probabilities of the two events together
+    the get the probability of \emph{both} events occuring. Let 
     $d$ be the random variable representing the outcome of the die roll and $c$ 
     be the random variable representing the outcome of the coin toss. Then 
 
@@ -451,15 +513,18 @@ indistinguishable.
 As we'll see, randomness plays an extremely important role in modern cryptographic
 schemes. A cryptographic \emph{scheme} is a well-defined procedure for accomplishing 
 some goal (called a \emph{cryptographic primitive}). For example, the Caesar 
-cipher is an encryption scheme, meaning it is a procedure for accomplishing
+cipher is an encryption scheme\footnotemark, meaning it is a procedure for accomplishing
 the cryptographic primitive of encryption. 
 In this packet, you'll learn about several \emph{secret sharing} schemes.
+\footnotetext{Note, however, that it is \emph{not} a secure encryption scheme!
+You can learn more about how the Caesar cipher works and its weakness 
+here: \url{https://www.khanacademy.org/computing/computer-science/cryptography/crypt/v/caesar-cipher}.}
 
 When a scheme's security rests only on the randomness used in it, and not on 
 solving a difficult or very long problem, we say that scheme is
 \emph{information-theoretically secure}. This is different from, for example,
 the schemes in the RSA cryptography packet, whose security depends on 
-the assumed difficulty factoring\footnotemark.
+the assumed difficulty of factoring\footnotemark.
 
 \footnotetext{When a scheme is protected by how hard it is 
 to compute something, it is said to be \emph{computationally secure}.}
@@ -468,7 +533,20 @@ The exact level of security of a scheme is determined by a \emph{security
 parameter}, which is a number that's often denoted by the symbol $\lambda$ 
 (the Greek letter lambda). The people using a scheme will generally decide 
 on the security parameter ahead of time based on how secure they want to 
-be. There's usually a tradeoff between security and efficiency, so the 
+be. 
+\nsm{Arghya: This is just nitpicking, but should 
+it be ``they want \emph{it} to be''? because the notion of security pertains to a scheme.}
+\nsm{Well, the scheme is a general construction that is parametrized 
+by $\lambda$, so a scheme has an (asymptotic) security that is different 
+from the concrete security of an \emph{instantiation} with a particular 
+$\lambda$. I agree that the sentence as-is is a bit awkwardly phrased, 
+but I think it is more accurate this way since the security parameter 
+affects how secure the particular instantiation of the scheme is, i.e. 
+how secure the parties' communications with/application of (etc.) the 
+scheme will be --- how secure they themselves will be. I don't want to 
+use the word ``instantiation'', though, because I think the readers will
+not be familiar with it. What do you think?}
+There's usually a tradeoff between security and efficiency, so the 
 parties will settle on a $\lambda$ that makes them feel safe enough without 
 making their computations prohibitively slow (hours, days, or weeks).
 % We'll learn more about this in Section~\ref{sec:proof}.
@@ -678,7 +756,7 @@ Here's a visual representation: \nsm{Is this less confusing?}
     the answer is pretty clear: no, this does not meet the correctness 
     requirement. A little bit of arithmetic confirms this: $\rec(\share(s))
     = \rec(s_1, s+s_1) = s_1 + (s+s_1) = s + 2s_1$, which is not equal to $s$
-    ($s_1$ always greater than or equal to $1$). 
+    ($s_1$ is never 0 since it is always greater than or equal to $1$). 
 \end{example}
 
 \begin{example}\label{ex:floor3}
@@ -696,7 +774,8 @@ Here's a visual representation: \nsm{Is this less confusing?}
     rounds a decimal number down to the integer below it. For example, $\lfloor 3.725 
     \rfloor = 3$.
 
-    Again, this is a secret sharing scheme according to Definition~\ref{def:ss}.
+    Again, this is a secret sharing scheme according to Definition~\ref{def:ss}
+    with both $\D$ and $\D_s$ being the set of integers.
     But is it correct? Answer to yourself again before reading on.
 
     This example is a little trickier because it works in some cases -- but not all! 
@@ -712,9 +791,8 @@ Here's a visual representation: \nsm{Is this less confusing?}
     which is not equal to 14.
     So this scheme isn't always correct, and since the definition of correctness 
     is all or nothing\footnotemark, the scheme doesn't have correctness.
-    \footnotetext{we said $\rec(\share(s)) = s$ must hold for \emph{all} $s$ 
-    in the set $\D$, which in this example is the integers. But 14 was an integer
-    for which the equality didn't hold.}
+    \footnotetext{we said $\rec(\share(s)) = s$ must hold for \emph{all} 
+    $s \in \D$. But 14 was an integer for which the equality didn't hold.}
 \end{example}
 
 \begin{example}\label{ex:floor}
@@ -732,8 +810,8 @@ Here's a visual representation: \nsm{Is this less confusing?}
     }
     % }
     \end{pchstack}
-    This still meets Definition~\ref{def:ss}. Is the adjusted scheme correct
-    now?
+    This still meets Definition~\ref{def:ss} with the same input and share 
+    domains. Is the adjusted scheme correct now?
 
     What happens if we share the number 14? First, we pick $s_1$ randomly.
     Say we happen to choose 7. Then 
@@ -746,13 +824,22 @@ Here's a visual representation: \nsm{Is this less confusing?}
         \rec(\share(14)) = \rec(5, 2) = 10,
     \]
     which is not 14!
-    So even though this scheme \emph{can} work for all $s \in \D$, correctness 
+
+    \new{When $s=37$, a similar thing happens: the scheme is correct for some 
+    choices of $s_1$, but not others:}
+    \begin{align*}
+        s_1 &= 1: &\rec(\share(37)) &= \rec(1, 37) = 37 = 37~\text{\cmark}\\
+        s_1 &= 2: &\rec(\share(37)) &= \rec(2, 18) = 36 \neq 37~\text{\xmark}\\
+        s_1 &= 3: &\rec(\share(37)) &= \rec(3, 12) = 36 \neq 37~\text{\xmark}\\
+        &\vdots   &\vdots &
+    \end{align*}
+    So even though this scheme \emph{can} work for all $s \in \D$, \new{correctness 
     will only hold for certain choices of $s_1$, and we have no control over 
-    $s_1$ because it is chosen randomly. So it is still not correct. 
+    $s_1$ because it is chosen randomly.} So this scheme is still not correct. 
     \nsm{@Seyed: You commented that this should be ``for some $s$''
     instead of ``for all''. I think ``for all'' is correct: for any choice 
     of $s$, there exists an $s_1$ such that this scheme is valid (let $s_1$ 
-    be a factor of $s$; if $s$ is prime, $s_1$ can be 1 or $s$).}
+    be a factor of $s$; $s_1$ can be 1 or $s$, so this holds even if $s$ is prime).}
 \end{example}
 
 Even though all the examples above didn't meet correctness, remember that
@@ -777,7 +864,35 @@ the attacker a share and ask it to give us some information about the
 secret it came from. This should be almost impossible if the scheme is 
 private.
 
-Here is the \emph{privacy game} for any secret sharing scheme $\ss = (\share, \rec)$:
+\nsm{Arghya: I think it'd be helpful to describe a mock situation/thought exercise (parallel to the style of Bob and Alice kinda situations) before throwing in such detailed definition of the privacy game; maybe the explanation right after figure 2 can in incorporated in such description. I'm just slightly worried if we just give them this definition without enough motivation it might be somewhat dry and scary to the uninitiated reader of mathematical texts.}
+\nsm{To be fair, this is an optional section so I only expected people 
+who were happy to read a little bit more difficult text and concepts to 
+venture here. But that's no reason to make things drier than they have to be :)
+Here's an attempt.}
+\new{More specifically, the secret sharing \emph{privacy game} captures 
+the following scenario. Alice wants to share some secret $s$ so that she
+can distribute its pieces to her friends. Maybe $s$ is the combination to
+her safe holding all her savings, and if something happens to her she wants
+her friends to be able to access them and distribute them according to
+her will. Unbeknownst to her, her friend Eve wants to go against Alice's
+wishes and get into the safe herself to steal Alice's money.}
+
+\new{Let's think about the worst case, in which Eve is very powerful: she knows 
+that the safe is locked with equal probability by one of two combinations
+$x_0$ or $x_1$; even worse, she was able to choose $x_0$ and $x_1$ by 
+somehow influencing Alice as she chose her combination; and she can control
+where in the list of friends she is so that she can pick whether she gets
+share number 1, 2, \ldots, $n-1$, or $n$. Once Alice has shared her
+combination among her friends, Eve will see the share $s_i$ (for her choice
+of $i$), which is the result of either $\share(x_0)$ or $\share(x_1)$.}
+
+\new{What sort of protection does Alice need? Even with all her information 
+(her knowledge of $x_0, x_1, i$, and $s_i$), we don't want Eve to figure
+out whether she got a share of $x_0$ or $x_1$, because if she did, she'd
+be able to unlock the safe!}
+
+Here is the formal \emph{privacy game} for any secret sharing scheme $\ss =
+(\share,\allowbreak \rec)$. (You can think of $\A$ as Eve.)
 \begin{enumerate}
     \item The adversary \A~picks two values $x_0, x_1$ and a number $i$ 
     between 1 and $n$.
@@ -931,11 +1046,11 @@ more complicated scheme, it might be unclear what ``learning something
 about the secret'' really means.
 
 \new{Another thing to notice is that the adversary's choice of $x_0$ and $x_1$
-is important. A very un-clever adversary might choose $x_0$ and $x_1$ with 
+is important. A less clever adversary might choose $x_0$ and $x_1$ with 
 the same tens place and then ask for the $i=1$ share (the tens digit).
 If it does this, it can't tell the shares apart, since they'll have the same
 value. Our definition is formulated to get around issues like this: to 
-show a scheme is secure, we just need to show that there is no adversary 
+show a scheme is secure, we need to show that there is \emph{no} adversary 
 with a not-small advantage. This means we only need to think about what the 
 cleverest way to break a scheme would be, and show that even that is 
 impossible.}
@@ -948,7 +1063,7 @@ it sometimes turns out that the authors didn't think of the most clever
 adversary to attack the scheme. In other cases, they might assume that 
 something is hard to do, so even if a clever adversary realizes that this 
 is the best way to break the scheme it won't be able to pull off this 
-kind of attack. But then someone discovers a way to solve that 
+kind of attack --- but then someone discovers a way to solve that 
 hard problem. (For example, RSA cryptography, introduced in 1977\cite{rsa},
 is based on the difficulty of factoring integers. But in 1994, Peter Shor 
 discovered a fast way to factor integers\cite{shor} --- if you have a 
@@ -962,7 +1077,8 @@ you can take a look at the RSA cryptography packet!)}
 
     You might think so at first, since the number 3 (the first share) is
     unrelated to the secret, and the second share isn't giving away the 
-    secret if the adversary doesn't know that it's defined as the secret minus 3.
+    secret if the adversary doesn't know that it's defined as the secret 
+    divided by 3 (rounded down).
     But in reality, we can't assume that the adversary doesn't know the 
     inner workings of the \share~algorithm: we need to assume the worst.
     
@@ -994,8 +1110,8 @@ you can take a look at the RSA cryptography packet!)}
 
 \subsection{Proving Security*}\label{sec:proof}
 
-So far, we've only proven that secret sharing schemes are \emph{not} private.
-Let's work through a proof of privacy using the additive secret sharing 
+So far, we've only seen secret sharing schemes that were not private.
+Let's work through a case in which we \emph{can} prove privacy, using the additive secret sharing 
 scheme as an example.
 
 \begin{theorem}
@@ -1053,10 +1169,10 @@ scheme as an example.
 
 Until now, we've only seen $n$-out-of-$n$ secret sharing schemes. The ``$n$-out-of-$n$'' part means that 
 the reconstruction algorithm needs at least $n$ out of the $n$ total shares to recover the
-secret: that is, it needs all of the shares to recover the secret. For example, if the 
+secret; that is, it needs all of the shares to recover the secret. If the 
 \share~algorithm outputs 2 shares, we need both shares to reconstruct.
 
-In general, though, $(t+1)$-out-of-$n$ secret sharing schemes exist for any integers
+In general, though, $(t+1)$-out-of-$n$ secret sharing schemes exist for any positive integers
 $t$ and $n$.
 ($t$ stands for ``threshold'', since it determines the minimum number of parties necessary 
 for reconstruction.)
@@ -1066,20 +1182,19 @@ of polynomials.
 \subsection{Polynomials}
 
 A \emph{polynomial} is an expression consisting of powers of a variable (or several variables,
-but we'll stick with polynomials in one variable in this packet) multiplied by numbers called 
-coefficients. Here's an example:
-
+but we'll stick with polynomials in one variable in this packet). Each power 
+is multiplied by a number called its coefficient. Here's an example:
 \[
     x^2 - 4x + 3
 \]
 
-The standard form for a polynomial in one variable, called a univariate polynomial, is 
-
+The standard form for a polynomial in one variable (called a univariate polynomial) is 
 \begin{equation}\label{eqn:std-form}
     a_n x^n + a_{n-1} x^{n-1} + \ldots + a_2 x^2 + a_1 x + a_0
 \end{equation}
 
-where the $a_n, \ldots, a_1$ are constant (fixed) values, usually integers, and $n$ 
+where the $a_n, \ldots, a_1$ are the coefficients of the polynomials. They 
+are constant (fixed) values, usually integers. $n$ 
 is a positive integer called the \emph{degree} of the polynomial. The example polynomial
 above is a degree-2 polynomial.
 
@@ -1114,7 +1229,7 @@ above is a degree-2 polynomial.
 % \caption{The graph of the polynomial $f(x)=x^1-4x+3$ with the $y$-intercept labeled.}
 \end{center}
 
-You may have plotted polynomials before to show how the value of the polynomial changes 
+You may have plotted a polynomial before to show how its value changes 
 with different values of $x$. A plot of our example polynomial is shown above.
 In that case, we are plotting the equation 
 \[
@@ -1123,7 +1238,8 @@ In that case, we are plotting the equation
 
 where $f(x)$ is read as ``$f$ of $x$'' and indicates that the expression 
 to the right of the equal sign is a function of the variable $x$. 
-The \emph{$y$-intercept} of a function is the place it crosses the $y$-axis, 
+
+The \emph{$y$-intercept} of a function is the place where it crosses the $y$-axis, 
 i.e. its value when $x=0$. In our example, the $y$-intercept is 3. Notice 
 that we could have calculated it without plotting the equation:
 \[
@@ -1132,7 +1248,7 @@ that we could have calculated it without plotting the equation:
 
 
 
-When a polynomial is written in standard form as in (\ref{eqn:std-form}), 
+When a polynomial is written in standard form as in Equation~\ref{eqn:std-form}, 
 the $y$-intercept is $a_0$.
 
 % The \emph{zeroes} of a function are the places where it crosses the $x$-axis,
@@ -1146,7 +1262,7 @@ the $y$-intercept is $a_0$.
 
 \begin{exercise}
     Write down the degree and $y$-intercept of each of the following 
-    polynomials:
+    polynomials (without plotting them!):
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
         \item $f(x) = x^2 + 3x - 1$
@@ -1161,9 +1277,12 @@ the $y$-intercept is $a_0$.
 
 \subsubsection{Uniqueness}\label{sec:unique}
 
-An important property of polynomials is that they can be uniquely defined 
-by a set of points of the right size. For example, two points uniquely 
-define a line:
+\new{An important property of polynomials is that we can describe any one 
+polynomial with a set of points. If they meet a few simple conditions, 
+these points will correspond to exactly one equation, so we say they 
+\emph{uniquely define} that polynomial.}
+
+You've probably learned that two points uniquely define a line:
 
 \begin{center}
 \begin{tikzpicture}
@@ -1184,20 +1303,23 @@ define a line:
 \node [above left,font=\small] at (point1) {$(1,1)$};
 \node (point2) at (axis cs: 3,5) {\textbullet};
 \node [above left,font=\small] at (point2) {$(3,5)$};
-\node [left,font=\small] at (axis cs: 4.5,8) {$f(x)=2x-1$};
 \end{axis}
+\node [font=\small] at (7.8,5) {$f(x)=2x-1$};
 \end{tikzpicture}
 \end{center}
 
-Remember that a line can be viewed as a degree-1 polynomial! 
-So, instead of giving someone the equation for this line, you could 
-give them 2 points (for example, $(1,1)$ and $(3,5)$) and they'd 
+In fact, we can view a line as a degree-1 polynomial, so we can uniquely 
+define it via a set of points!
+Instead of giving someone the equation for this line, you could 
+give them 2 points on the line (for example, $(1,1)$ and $(3,5)$) and they'd 
 still know exactly what line you're talking about. 
 
 To specify a particular degree-2 polynomial, two points aren't enough.
 For example, $x^2-4x+3$ goes through the points $(0,3)$ and $(4,3)$,
 but so do many other degree-2 polynomials (represented here with dotted
-lines):
+lines):\nsm{I changed the equation placement and added equations for the 
+other polynomials. Does it look too crowded? Is the correspondence 
+between equations and plots clear?}
 
 \begin{center}
 \begin{tikzpicture}
@@ -1218,11 +1340,13 @@ lines):
 \node [above right,font=\small] at (point1) {$(0,3)$};
 \node (point2) at (axis cs: 4,3) {\textbullet};
 \node [above left,font=\small] at (point2) {$(4,3)$};
-\node [left,font=\small] at (axis cs: 5,7.5) {$f(x)=x^2-4x+3$};
 % other degree-2 polys through these points
 \addplot[domain=-1:5,samples=50,mark=none,dotted]{-(x^2-4*x+3)+6};
 \addplot[domain=-1:5,samples=50,mark=none,dotted]{x^2/4-x+3};
 \end{axis}
+\node [font=\small] at (8,5) {$f(x)=x^2-4x+3$};
+\node [font=\small] at (8,3.3) {$f(x)=\frac{1}{4}x^2-x+3$};
+\node [font=\small] at (-1,1.3) {$f(x)=-x^2+4x+3$};
 \end{tikzpicture}
 \end{center}
 
@@ -1249,8 +1373,8 @@ Instead, 3 points are needed to uniquely define a degree-2 polynomial:
 \node [above left,font=\small] at (point2) {$(4,3)$};
 \node (point3) at (axis cs: 1,0) {\textbullet};
 \node [above right,font=\small] at (point3) {$(1,0)$};
-\node [left,font=\small] at (axis cs: 5,7.5) {$f(x)=x^2-4x+3$};
 \end{axis}
+\node [font=\small] at (8,5) {$f(x)=x^2-4x+3$};
 \end{tikzpicture}
 \end{center}
 
@@ -1291,33 +1415,40 @@ the next section explains how one of these techniques works.
 In this section we'll learn about one method of doing polynomial interpolation 
 called \emph{Lagrange interpolation}. It's described by a single equation:
 
+\nsm{@Arghya: you mentioned this should be $n$ instead of $n-1$. The top of 
+the summation range is correctly labeled $n-1$, though, since we assume 
+we are given $n$ points, not $n-1$, and the range starts at 0. I've updated 
+the name of this variable to $m$ instead to avoid overloading $n$ and
+to bring this notation more in line with Definition~\ref{def:ss-update}.}
+
 \begin{equation}\label{eqn:lagrange}
-    P(x) = \sum_{i=0}^{n-1} y_i \ell_i(x), \text{ where } 
-    \ell_i(x) = \prod_{\substack{j=0\\j\neq i}}^{n-1} \frac{x-x_j}{x_i-x_j}
+    P(x) = \sum_{i=0}^{m-1} y_i \ell_i(x), \text{ where } 
+    \ell_i(x) = \prod_{\substack{j=0\\j\neq i}}^{m-1} \frac{x-x_j}{x_i-x_j}
 \end{equation}
 
 Let's break it down bit by bit. First, in case you aren't familiar with 
-the symbols, $\sum_{i=0}^{n-1}$ \new{is called \emph{summation notation} 
+the symbols, $\sum_{i=0}^{m-1}$ \new{is called \emph{summation notation} 
 or \emph{sigma notation}}. It means to evaluate the expression after 
 $\sum$ for each value of $i$ \new{(starting at the number below the summation 
 symbol and ending at the number above)} and then add all those terms together. For 
 example:
 
 \[
-    \sum_{i=1}^n i = 1 + 2 + \ldots + n
+    \sum_{i=1}^m i = 1 + 2 + \ldots + m
 \]
 
 $\prod$ \new{(\emph{product notation} or \emph{pi notation})} is similar, but we multiply the expressions instead of adding 
 them:
 \[
-    \prod_{i=1}^n i = 1 \cdot 2 \cdot \ldots \cdot n
+    \prod_{i=1}^m i = 1 \cdot 2 \cdot \ldots \cdot m
 \]
 
 So, $\sum_{i=1}^{4} i = 1+2+3+4 = 10$ and $\prod_{i=1}^4 i = 1 \cdot 2 \cdot 3 
 \cdot 4 = 24$.
 
 \begin{bonus}
-    Evaluate the following expressions:
+    Evaluate the following expressions. Keep a close eye on the starting 
+    value of $i$!
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
         \item $\sum_{i=1}^5 2i$
@@ -1352,16 +1483,16 @@ for that point, into the summation, and we'll end up with a polynomial.
 If we did everything right, that will be exactly the polynomial defined 
 by those points.
 
-Let's work through an example using the degree-1 polynomial from Section~\ref{sec:unique}:
-we'll use the points $(1,1), (3,5)$ to recover the equation of the line. Remember that we 
-start numbering the elements of a set at 0, so $(1,1)$ is the 0th point and $(3,5)$ is 
-the 1st.
+Let's work through an example using the degree-1 polynomial we plotted in Section~\ref{sec:unique}:
+we'll use the points $(1,1), (3,5)$ to recover the equation of the line. Remember that,
+in this packet, we start numbering the elements of a set at 0, so $(x_0,y_0)
+= (1,1)$ and $(x_1, y_1) = (3,5)$.
 
 \begin{example}
 Use Lagrange interpolation to get a degree-1 polynomial passing through the points 
 $(1,1), (3,5)$.
 
-Since we have $2$ points, $n=2$:
+Since we have $2$ points, $m=2$:
 \begin{align*}
     P(x) &= \sum_{i=0}^{1} y_i \ell_i(x)\\
     &= y_0 \ell_0(x) + y_1 \ell_1(x)
@@ -1393,7 +1524,7 @@ Plugging that back into the sum, we get
     &= 1 \left(\frac{x-3}{-2}\right) + 5 \left(\frac{x-1}{2}\right)\\
     &= \frac{-(x-3)}{2} + \frac{5(x-1)}{2}\\
     &= \frac{5x-5-(x-3)}{2}\\
-    &= \frac{4x-2)}{2}
+    &= \frac{4x-2}{2}
     = 2x-1\\
 \end{align*}
 
@@ -1402,7 +1533,7 @@ That's the same equation as the one we graphed!
 
 \begin{example}
 Let's do the degree-2 example from Section~\ref{sec:unique} next. Our set of 
-points is $\{(0,3),(1,0),(4,3)\}$ and $n=3$.
+points is $\{(0,3),(1,0),(4,3)\}$ and $m=3$.
 \begin{align*}
     P(x) &= \sum_{i=0}^{2} y_i \ell_i(x)\\
     &= y_0 \ell_0(x) + y_1 \ell_1(x) + y_2 \ell_2(x)\\
@@ -1416,11 +1547,15 @@ The polynomials $\ell_i(x)$ are:
     &= \frac{x-1}{0-1} \frac{x-4}{0-4}\\
     &= \frac{x-1}{-1} \frac{x-4}{-4}
     = \frac{(x-1)(x-4)}{4}\\
+\end{align*}
+\begin{align*}
     \ell_1(x) &= \prod_{\substack{j=0\\j\neq 1}}^{2} \frac{x-x_j}{x_1-x_j}\\
     &= \frac{x-x_0}{x_1-x_0} \frac{x-x_2}{x_1-x_2}\\
     &= \frac{x-0}{1-0} \frac{x-4}{1-4}\\
     &= \frac{x}{1} \frac{x-4}{-3}
     = \frac{x(x-4)}{-3}\\
+\end{align*}
+\begin{align*}
     \ell_2(x) &= \prod_{\substack{j=0\\j\neq 2}}^{2} \frac{x-x_j}{x_2-x_j}\\
     &= \frac{x-x_0}{x_2-x_0} \frac{x-x_1}{x_2-x_1}\\
     &= \frac{x-0}{4-0} \frac{x-1}{4-1}\\
@@ -1452,7 +1587,7 @@ and again we've arrived at the same polynomial we graphed.
 
 \subsection{Sharing Secrets Using Polynomials}
 
-Shamir secret sharing is a $(t+1)$-out-of-$n$ secret sharing scheme, for some numbers $t$ and $n$. This means that we split the secret $s$ into $n$ values and distribute them to $n$ people. Then, at least $t+1$ of those people must work together to recover $s$.
+Shamir secret sharing is a $(t+1)$-out-of-$n$ secret sharing scheme, for some positive integers $t$ and $n$. This means that we split the secret $s$ into $n$ values and distribute them to $n$ people. Then, at least $t+1$ of those people must work together to recover $s$.
 
 Let's update our definition of secret sharing from Section~\ref{sec:formal-defs}
 to include $(t+1)$-out-of-$n$ secret sharing schemes where $t+1 \neq n$.
@@ -1518,7 +1653,7 @@ to be truly private.}
 To reconstruct, we need at least $t+1$ points. The reconstruction 
 algorithm takes these points $s_i = (x_i, y_i)$ and tries to recover 
 $f$ using interpolation. (If there are not enough points, interpolation 
-would fail, so we return the symbol $\perp$ to indicate an error.)
+would fail, so we don't even try and instead return the symbol $\perp$ to indicate an error.)
 Once we recover a polynomial, we evaluate it at 0 to find its 
 $y$-intercept and output that.
 
@@ -1547,33 +1682,34 @@ $y$-intercept and output that.
 \node (share1) at (axis cs: 1,17) {\textbullet};
 \node (share2) at (axis cs: 2,22) {\textbullet};
 \node (share3) at (axis cs: 3,27) {\textbullet};
-\node [right,font=\small] at (share1) {$(1,17)$};
-\node [right,font=\small] at (share2) {$(2,22)$};
-\node [right,font=\small] at (share3) {$(3,27)$};
-\node (s) at (axis cs: 0,12) {\textbullet};
-\node [right,font=\small] at (s) {$s=12$};
+\node [right,font=\small] at (share1) {$s_1=(1,17)$};
+\node [right,font=\small] at (share2) {$s_2=(2,22)$};
+\node [right,font=\small] at (share3) {$s_3=(3,27)$};
+\node [magenta] (s) at (axis cs: 0,12) {\textbullet};
+\node [right,magenta,font=\small] at (s) {$s=12$};
 \end{axis}
 \end{tikzpicture}
 \end{center}
 
 \begin{example}
     Now let's say we receive two of the previous shares to reconstruct:
-    $(1,17),(3,27)$ We know they are 2-out-of-3 shares (this is realistic; 
+    $(1,17),(3,27)$. Say we know they are 2-out-of-3 shares (this is realistic; 
     in practice, $t$ and $n$ would be known to all the parties, or the 
     points would be labeled with the values of $t$ and $n$ used to 
     generate them.) How do we reconstruct?
 
     First of all, \new{we know that reconstruction is possible} because 
-    $t+1 = 2$ and we have at least two shares (exactly two, in fact). 
+    we have $m=2$ shares and $t+1=2$, so $m \geq t+1$ as required for the 
+    reconstruction algorithm not to fail immediately.
     \nsm{Is this wording less confusing?}
     Now we need to interpolate to recover the degree-2 polynomial 
     they represent. (If you didn't read Section~\ref{sec:lagrange}, 
-    you can skip to the evaluation of $f(0)$ on the next page.)
+    you can skip to the evaluation of $f(0)$ \todo{at the bottom of this page}.)
 
     Let's re-number the input shares starting with 
     0, so $(x_0,y_0) = (1,17)$ and $(x_1,y_1) = (3,27)$.
     \begin{align*}
-        f(x) &= \sum_{i=0}^{m} y_i \ell_i(x)\\
+        f(x) &= \sum_{i=0}^{m-1} y_i \ell_i(x)\\
         &= y_0 \ell_0(x) + y_1 \ell_1(x)\\
         &= 17 \ell_0(x) + 27 \ell_1(x)
     \end{align*}
@@ -1612,10 +1748,12 @@ $y$-intercept and output that.
     your group and pick $t$ so that $t+1 < n$. Use \share~to 
     compute shares of your secret and give each person in the group
     one share. Now a subgroup of $t+1$ people should work together 
-    to reconstruct the secret using \rec. Once they succeed, 
+    to reconstruct the secret using \rec\footnotemark. Once you succeed, 
     form a different group of $t+1$ people and run \rec~again
     using this new group of points. You should get the same 
     result!
+    \footnotetext{You can use \url{https://www.dcode.fr/lagrange-interpolating-polynomial}
+    to do the Lagrange interpolation.}
 \end{bonus}
 
 Notice that in the scheme presented in Figure~\ref{fig:shamirSS},
