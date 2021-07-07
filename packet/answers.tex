@@ -290,17 +290,8 @@
     }
     \end{pchstack}
 
-    \nsm{A more exact version of \rec~would be this, but I'm worried 
-    it introduces too much extra notation:}
-
-    \begin{center}
-    \procedure{$\rec(s_1, \ldots, s_m)$}{%
-        \textsf{if}~ m \neq n\\
-        \hspace{2em}\textsf{return}~ \perp\\
-        \textsf{else}\\
-        \hspace{2em}\textsf{return}~ s_1 + \ldots + s_n
-    }
-    \end{center}
+    \new{(If $\rec$ is run on the incorrect number of shares---anything except 
+    3 and $n$, respectively---the algorithms return $\perp$.)}
 \end{answer}
 
 \subsection{Formal Definitions*}

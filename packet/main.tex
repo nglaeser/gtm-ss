@@ -99,7 +99,7 @@ Optional sections are marked with an asterisk (*).
 \section{Probability and Randomness}\label{sec:prob}
 
 In mathematics, the word ``random'' has a more precise meaning than in everyday 
-speech. Something is random if its outcome is governed by what is called a 
+speech. Something is random if its outcome is governed by what's called a 
 \emph{probability distribution}. 
 For example, the outcome $c$ of a coin toss is not fixed, but takes 
 on one of the values in the set $\{H, T\}$, where $H$ means heads and $T$ means 
@@ -188,10 +188,10 @@ Similarly, $c$ is tails with probability one-half:
     \Pr[c=T] = \frac{1}{2}
 \]
 
-\new{Given these two facts, what is the probability of getting heads \emph{or}
+Given these two facts, what is the probability of getting heads \emph{or}
 tails? Because these two events are \emph{mutually exclusive} (that is, 
 if one occurs, it means the other cannot possibly have occured, and 
-vice versa), we can add their probabilities:}
+vice versa), we can add their probabilities:
 \begin{align*}
     \Pr[c = H \text{ or } T] &= \Pr[c=H] + \Pr[c=T] \\
     &= \frac{1}{2} + \frac{1}{2} = 1
@@ -217,7 +217,7 @@ of a dice roll. Notice that in both cases, the probabilities sum to 1.
     \label{fig:pies}
   \end{figure}
 
-\new{When two events are not mutually exclusive, however, we can't add 
+When two events are not mutually exclusive, however, we can't add 
 their probabilities. For example, what's the probability of rolling a 
 multiple of 2 or a multiple of 3? These are not mutually exclusive
 events, since 6 is a multiple of \emph{both} 2 and 3! Instead, we need 
@@ -226,7 +226,7 @@ the probability of rolling a multiple of two, and add this to the
 probability of rolling a 3: by doing this, we still cover all the 
 possible outcomes (2, 3, 4, and 6) but broken into mutually exclusive 
 events ($\{2,4,6\}$ or $\{3\}$) instead of overlapping events ($\{2, 4, 
-6\}$ or $\{3, 6\}$). Then}
+6\}$ or $\{3, 6\}$). Then
 
 \begin{align*}
     &\Pr[d \text{ is a multiple of 2 or 3}] \\
@@ -235,7 +235,7 @@ events ($\{2,4,6\}$ or $\{3\}$) instead of overlapping events ($\{2, 4,
     &= \frac{4}{6} = \frac{2}{3}
 \end{align*}
 
-\new{where $d$ is the random variable representing the outcome of the die roll.}
+where $d$ is the random variable representing the outcome of the die roll.
 
 \hfill\\
 
@@ -264,10 +264,8 @@ An alternate form is
     \end{equation}
 \end{subequations}
 
-\nsm{I'm not sure if the explanation that follows is beneficial.}
-\new{Understanding why these equations are true can help us remember them.
-One way to see why they hold is with a Venn diagram:}
-\todo{(See Seyed's comments on Slack.)}
+Understanding why these equations are true can help us remember them.
+One way to see why they hold is with a Venn diagram:
 
 \begin{center}
 \begin{tikzpicture}
@@ -298,10 +296,10 @@ One way to see why they hold is with a Venn diagram:}
 \end{tikzpicture}
 \end{center}
 
-\new{Let's think through Equation~\ref{eqn:conditional_mid} with this diagram 
+Let's think through Equation~\ref{eqn:conditional_mid} with this diagram 
 in front of us. The event ``$A$ given $B$'' means we know $B$ happened, 
 so now our entire realm of possibilities exists only in the circle 
-on the right. Let's zoom in on that circle:} 
+on the right. Let's zoom in on that circle:
 
 \begin{center}
 \begin{tikzpicture}
@@ -327,16 +325,16 @@ on the right. Let's zoom in on that circle:}
     \end{scope}
 \end{tikzpicture}
 \end{center}
-\new{The cases in which $A$ happens next are in the little slice on the 
+The cases in which $A$ happens next are in the little slice on the 
 left. We want to know the probability $A$ happening given our current 
 information, which is simply the fraction of possible events covered by 
 this area. Zooming back out, that's exactly $\Pr[A \text{ and } B]$ 
-divided by $\Pr[B]$!}
+divided by $\Pr[B]$!
 
-\new{The difference is the reference frame: in the first diagram, we are in a 
+The difference is the reference frame: in the first diagram, we are in a 
 world in which we make no assumptions: all possibilities are open. In 
 the second, we are using the extra information that $B$ happened to 
-limit the world of possibilities. Let's see some concrete examples next.}
+limit the world of possibilities. Let's see some concrete examples next.
 
 \begin{example}\label{ex:cond-vis}
     \color{blue} % new
@@ -526,20 +524,20 @@ of two events together to get the probability that both events happen simultaneo
     Suppose I roll a die and flip a coin. What's the probability that I roll a 1 
     \emph{and} get heads?
 
-    \new{Our first instinct might be to list out all of the possible 
+    Our first instinct might be to list out all of the possible 
     combinations of events; for each outcome of the roll, there is a tails and a 
-    heads option: }
+    heads option:
 
     \[
         1H, 1T, 2H, 2T, 3H, 3T, 4H, 4T, 5H, 5T, 6H, 6T
     \]
 
-    \new{Each of these outcomes occurs with equal probability, and there 
+    Each of these outcomes occurs with equal probability, and there 
     are twelve of them, so rolling a 1 and getting heads ($1H$) occurs 
-    with probability $\frac{1}{12}$.}
+    with probability $\frac{1}{12}$.
 
-    \new{If we realize that the dice and coin outcomes are independent, however,
-    we can get to this answer in a simpler way.} Looking at Equation~\ref{eq:and}, 
+    If we realize that the dice and coin outcomes are independent, however,
+    we can get to this answer in a simpler way. Looking at Equation~\ref{eq:and}, 
     we see that we can multiply the probabilities of the two events together
     the get the probability of \emph{both} events occuring. Let 
     $d$ be the random variable representing the outcome of the die roll and $c$ 
@@ -670,20 +668,8 @@ to compute something, it is said to be \emph{computationally secure}.}
 The exact level of security of a scheme is determined by a \emph{security 
 parameter}, which is a number that's often denoted by the symbol $\lambda$ 
 (the Greek letter lambda). The people using a scheme will generally decide 
-on the security parameter ahead of time based on how secure they want to 
-be. 
-\nsm{Arghya: This is just nitpicking, but should 
-it be ``they want \emph{it} to be''? because the notion of security pertains to a scheme.}
-\nsm{Well, the scheme is a general construction that is parametrized 
-by $\lambda$, so a scheme has an (asymptotic) security that is different 
-from the concrete security of an \emph{instantiation} with a particular 
-$\lambda$. I agree that the sentence as-is is a bit awkwardly phrased, 
-but I think it is more accurate this way since the security parameter 
-affects how secure the particular instantiation of the scheme is, i.e. 
-how secure the parties' communications with/application of (etc.) the 
-scheme will be --- how secure they themselves will be. I don't want to 
-use the word ``instantiation'', though, because I think the readers will
-not be familiar with it. What do you think?}
+on the security parameter ahead of time based on how secure they want to
+\new{keep their information}. 
 There's usually a tradeoff between security and efficiency, so the 
 parties will settle on a $\lambda$ that makes them feel safe enough without 
 making their computations prohibitively slow (hours, days, or weeks).
@@ -813,7 +799,7 @@ of achieving the same thing, after all).
         \item \share~takes as input a secret $s \in \D$ and outputs $n$ 
         shares in $\D_s$.
         \item \rec~takes as input $m$ shares $s_1, \ldots, s_m \in D_s$ 
-        and output some value $y \in \D$ or a special symbol $\perp$ 
+        and outputs some value $y \in \D$ or a special symbol $\perp$ 
         indicating failure. (If $m \neq n$, it outputs $\perp$.)
     \end{itemize}
 \end{definition}
@@ -828,9 +814,7 @@ of achieving the same thing, after all).
 % \end{definition}
 
 
-Here's a visual representation: \nsm{Is this less confusing?}
-\nsm{Seyed: Maybe a matter of taste. I would prefer not having them on top of each other and just having them next to each other. Also, maybe dropping the figure is not a bad idea.}
-\todo{(Check with Mamma/Trevor.)}
+Here's a visual representation: 
 
 \begin{center}
 \pgfdeclarelayer{background}
@@ -887,8 +871,9 @@ Here's a visual representation: \nsm{Is this less confusing?}
     \end{pchstack}
     This scheme meets Definition~\ref{def:ss} with $n=2$. The input and share domains
     are both the integers, \share~correctly outputs two integers, and 
-    \rec~takes two integers and outputs another integer (it never returns 
-    $\perp$).
+    \rec~takes two integers and outputs another integer. \new{(If we give $\rec$
+    any other number of integers, it returns $\perp$; for simplicity, we'll 
+    leave this detail out of the algorithms in this section.)}
 
     Does this scheme have correctness? Answer in your head before reading on.
 
@@ -965,17 +950,17 @@ Here's a visual representation: \nsm{Is this less confusing?}
     \]
     which is not 14!
 
-    \new{When $s=37$, a similar thing happens: the scheme is correct for some 
-    choices of $s_1$, but not others:}
+    When $s=37$, a similar thing happens: the scheme is correct for some 
+    choices of $s_1$, but not others:
     \begin{align*}
         s_1 &= 1: &\rec(\share(37)) &= \rec(1, 37) = 37 = 37~\text{\cmark}\\
         s_1 &= 2: &\rec(\share(37)) &= \rec(2, 18) = 36 \neq 37~\text{\xmark}\\
         s_1 &= 3: &\rec(\share(37)) &= \rec(3, 12) = 36 \neq 37~\text{\xmark}\\
         &\vdots   &\vdots &
     \end{align*}
-    So even though this scheme \emph{can} work for all $s \in \D$, \new{correctness 
+    So even though this scheme \emph{can} work for all $s \in \D$, correctness 
     will only hold for certain choices of $s_1$, and we have no control over 
-    $s_1$ because it is chosen randomly.} So this scheme is still not correct. 
+    $s_1$ because it is chosen randomly. So this scheme is still not correct. 
 \end{example}
 
 Even though all the examples above didn't meet correctness, remember that
@@ -1000,29 +985,29 @@ the attacker a share and ask it to give us some information about the
 secret it came from. This should be almost impossible if the scheme is 
 private.
 
-\new{More specifically, the secret sharing \emph{privacy game} captures 
+More specifically, the \emph{secret sharing privacy game} captures 
 the following scenario. Alice wants to share some secret $s$ so that she
 can distribute its pieces to her friends. Maybe $s$ is the combination to
 her safe holding all her savings, and if something happens to her she wants
 her friends to be able to access them and distribute them according to
 her will. Unbeknownst to her, her friend Eve wants to go against Alice's
-wishes and get into the safe herself to steal Alice's money.}
+wishes and get into the safe herself to steal Alice's money.
 
-\new{Let's think about the worst case, in which Eve is very powerful: she knows 
+Let's think about the worst case, in which Eve is very powerful: she knows 
 that the safe is locked with equal probability by one of two combinations
 $x_0$ or $x_1$; even worse, she was able to choose $x_0$ and $x_1$ by 
 somehow influencing Alice as she chose her combination; and she can control
 where in the list of friends she is so that she can pick whether she gets
 share number 1, 2, \ldots, $n-1$, or $n$. Once Alice has shared her
 combination among her friends, Eve will see the share $s_i$ (for her choice
-of $i$), which is the result of either $\share(x_0)$ or $\share(x_1)$.}
+of $i$), which is the result of either $\share(x_0)$ or $\share(x_1)$.
 
-\new{What sort of protection does Alice need? Even with all the information 
+What sort of protection does Alice need? Even with all the information 
 known to Eve (her knowledge of $x_0, x_1, i$, and $s_i$), we don't want her to figure
 out whether she got a share of $x_0$ or $x_1$, because if she did, she'd
-be able to unlock the safe!}
+be able to unlock the safe!
 
-Here is the formal \emph{privacy game} for any secret sharing scheme $\ss =
+Here is the formal privacy game for any secret sharing scheme $\ss =
 (\share,\allowbreak \rec)$. (You can think of $\A$ as Eve.)
 \begin{enumerate}
     \item The adversary \A~picks two values $x_0, x_1$ and a number $i$ 
@@ -1176,7 +1161,7 @@ game, however, makes more sense mathematically. In the case of a much
 more complicated scheme, it might be unclear what ``learning something 
 about the secret'' really means.
 
-\new{Another thing to notice is that the adversary's choice of $x_0$ and $x_1$
+Another thing to notice is that the adversary's choice of $x_0$ and $x_1$
 is important. A less clever adversary might choose $x_0$ and $x_1$ with 
 the same tens place and then ask for the $i=1$ share (the tens digit).
 If it does this, it can't tell the shares apart, since they'll have the same
@@ -1184,9 +1169,9 @@ value. Our definition is formulated to get around issues like this: to
 show a scheme is secure, we need to show that there is \emph{no} adversary 
 with a not-small advantage. This means we only need to think about what the 
 cleverest way to break a scheme would be, and show that even that is 
-impossible.}
+impossible.
 
-\new{This is also a place where problems with cryptographic proofs of security 
+This is also a place where problems with cryptographic proofs of security 
 can arise. There are examples of cryptographers publishing papers 
 introducing new, ``secure'' schemes that end up being broken. And yet 
 these schemes had proofs of security! Especially for complicated schemes, 
@@ -1199,7 +1184,7 @@ hard problem. (For example, RSA cryptography, introduced in 1977\cite{rsa},
 is based on the difficulty of factoring integers. But in 1994, Peter Shor 
 discovered a fast way to factor integers\cite{shor} --- if you have a 
 quantum computer. If you're interested in how RSA cryptography works, 
-you can take a look at the RSA cryptography packet!)}
+you can take a look at the RSA cryptography packet!)
 
 \begin{example}
     % \hyperref[ex:floor]{\thesection.\ref*{ex:floor3}}
@@ -1408,10 +1393,10 @@ the $y$-intercept is $a_0$.
 
 \subsubsection{Uniqueness}\label{sec:unique}
 
-\new{An important property of polynomials is that we can describe any one 
+An important property of polynomials is that we can describe any one 
 polynomial with a set of points. If they meet a few simple conditions, 
 these points will correspond to exactly one equation, so we say they 
-\emph{uniquely define} that polynomial.}
+\emph{uniquely define} that polynomial.
 
 You've probably learned that two points uniquely define a line:
 
@@ -1447,10 +1432,8 @@ still know exactly what line you're talking about.
 
 To specify a particular degree-2 polynomial, two points aren't enough.
 For example, $x^2-4x+3$ goes through the points $(0,3)$ and $(4,3)$,
-but so do many other degree-2 polynomials (represented here with dotted
-lines):\nsm{I changed the equation placement and added equations for the 
-other polynomials. Does it look too crowded? Is the correspondence 
-between equations and plots clear?}
+but so do many other degree-2 polynomials: 
+%(represented here with dotted lines):
 
 \begin{center}
 \begin{tikzpicture}
@@ -1550,29 +1533,23 @@ the next section explains how one of these techniques works.
 In this section we'll learn about one method of doing polynomial interpolation 
 called \emph{Lagrange interpolation}. It's described by a single equation:
 
-\nsm{@Arghya: you mentioned this should be $n$ instead of $n-1$. The top of 
-the summation range is correctly labeled $n-1$, though, since we assume 
-we are given $n$ points, not $n-1$, and the range starts at 0. I've updated 
-the name of this variable to $m$ instead to avoid overloading $n$ and
-to bring this notation more in line with Definition~\ref{def:ss-update}.}
-
 \begin{equation}\label{eqn:lagrange}
     P(x) = \sum_{i=0}^{m-1} y_i \ell_i(x), \text{ where } 
     \ell_i(x) = \prod_{\substack{j=0\\j\neq i}}^{m-1} \frac{x-x_j}{x_i-x_j}
 \end{equation}
 
 Let's break it down bit by bit. First, in case you aren't familiar with 
-the symbols, $\sum_{i=0}^{m-1}$ \new{is called \emph{summation notation} 
-or \emph{sigma notation}}. It means to evaluate the expression after 
-$\sum$ for each value of $i$ \new{(starting at the number below the summation 
-symbol and ending at the number above)} and then add all those terms together. For 
+the symbols, $\sum_{i=0}^{m-1}$ is called \emph{summation notation} 
+or \emph{sigma notation}. It means to evaluate the expression after 
+$\sum$ for each value of $i$ (starting at the number below the summation 
+symbol and ending at the number above) and then add all those terms together. For 
 example:
 
 \[
     \sum_{i=1}^m i = 1 + 2 + \ldots + m
 \]
 
-$\prod$ \new{(\emph{product notation} or \emph{pi notation})} is similar, but we multiply the expressions instead of adding 
+$\prod$ (\emph{product notation} or \emph{pi notation}) is similar, but we multiply the expressions instead of adding 
 them:
 \[
     \prod_{i=1}^m i = 1 \cdot 2 \cdot \ldots \cdot m
@@ -1833,10 +1810,9 @@ $y$-intercept and output that.
     points would be labeled with the values of $t$ and $n$ used to 
     generate them.) How do we reconstruct?
 
-    First of all, \new{we know that reconstruction is possible} because 
+    First of all, we know that reconstruction is possible because 
     we have $m=2$ shares and $t+1=2$, so $m \geq t+1$ as required for the 
     reconstruction algorithm not to fail immediately.
-    \nsm{Is this wording less confusing?}
     Now we need to interpolate to recover the degree-2 polynomial 
     they represent. (If you didn't read Section~\ref{sec:lagrange}, 
     you can skip to the evaluation of $f(0)$ \todo{at the bottom of this page}.)
@@ -1926,15 +1902,15 @@ packet.
 
 \section{Beyond secret sharing}
 
-\new{Congratulations on making it through this packet! You have not only 
+Congratulations on making it through this packet! You have not only 
 learned about secret sharing, a building block for many other cryptographic 
 primitives that are used in the real world\footnotemark, but have also
 gotten a glimpse into what modern cryptography research looks like. 
 The same definitions and proof techniques you saw in this packet pop 
 up in many other areas of cryptography, and you now have a head start in 
-understanding the techniques in many other subfields.}
+understanding the techniques in many other subfields.
 
-\footnotetext{\new{Most notably, secret sharing forms the basis of many 
+\footnotetext{Most notably, secret sharing forms the basis of many 
 \emph{multiparty computation (MPC)} schemes. These allow multiple 
 parties, as the name implies, to compute functions over their secret 
 inputs. For example, the Boston Women’s Workforce Council organized 
@@ -1942,7 +1918,7 @@ an effort which used MPC\cite[page 12]{bwwc} to calculate statistics
 about the salaries of the workforce in about 16\% of the Boston area to 
 show that the gender pay gap was wider than what the U.S. Bureau of Labor
 Statistics reported\cite{bwwc}. MPC was necessary because companies needed 
-to keep their data on employee salaries secret due to privacy concerns.}}
+to keep their data on employee salaries secret due to privacy concerns.}
 
 \newpage
 {\small
