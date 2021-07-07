@@ -340,6 +340,8 @@ limit the world of possibilities. Let's see some concrete examples next.
     \color{blue} % new
     Consider the following sample space, where each number is chosen with 
     equal probability.
+    Throughout the example, let $B = \{3,4,7,8,11,12,15,16\}$ (the shaded 
+    cells).
 
     \begin{center}
     \begin{tikzpicture}
@@ -361,22 +363,10 @@ limit the world of possibilities. Let's see some concrete examples next.
         \node at (2.5,0.5) {15};
         \node at (3.5,0.5) {16};
         \filldraw[pattern=north east lines,opacity=0.5] (2,0) rectangle (4,4);
+        \node at (3,4.5) {$B$};
     \end{tikzpicture}
     \end{center}
 
-    % \begin{center}
-    % \newcolumntype{g}{>{\columncolor{lightgray}}c}
-    % \begin{tabular}{|c|c|g|g|}
-    %     \hline
-    %      1 &  2 &  3 &  4\\\hline
-    %      5 &  6 &  7 &  8\\\hline
-    %      9 & 10 & 11 & 12\\\hline
-    %     13 & 14 & 15 & 16\\
-    %     \hline
-    % \end{tabular}
-    % \end{center}
-
-    Throughout, let $B = \{3,4,7,8,11,12,15,16\}$ (the shaded cells).
     Notice that $\Pr[B] = \frac{8}{16} = \frac{1}{2}$.
     
 
@@ -404,6 +394,8 @@ limit the world of possibilities. Let's see some concrete examples next.
                 \node at (3.5,0.5) {16};
                 \filldraw[pattern=north east lines,opacity=0.5] (2,0) rectangle (4,4);
                 \filldraw[pattern=north west lines,opacity=0.5] (0,1) rectangle (2,2);
+                \node at (3,4.5) {$B$};
+                \node at (-0.5,1.5) {$A$};
             \end{tikzpicture}
             \end{center}
 
@@ -436,6 +428,8 @@ limit the world of possibilities. Let's see some concrete examples next.
                 \node at (3.5,0.5) {16};
                 \filldraw[pattern=north east lines,opacity=0.5] (2,0) rectangle (4,4);
                 \filldraw[pattern=north west lines,opacity=0.5] (1,1) rectangle (3,2);
+                \node at (3,4.5) {$B$};
+                \node at (-0.5,1.5) {$A$};
             \end{tikzpicture}
             \end{center}
 
@@ -466,6 +460,8 @@ limit the world of possibilities. Let's see some concrete examples next.
                 \node at (3.5,0.5) {16};
                 \filldraw[pattern=north east lines,opacity=0.5] (2,0) rectangle (4,4);
                 \filldraw[pattern=north west lines,opacity=0.5] (2,1) rectangle (4,2);
+                \node at (3,4.5) {$B$};
+                \node at (4.5,1.5) {$A$};
             \end{tikzpicture}
             \end{center}
 
