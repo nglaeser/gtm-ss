@@ -33,6 +33,7 @@
 
 %comments
 \newcommand{\nsm}[1]{\textcolor{teal}{(NG: #1)}}
+\newcommand{\new}[1]{\textcolor{blue}{#1}}
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 
 \newcounter{answer}[section]
@@ -118,6 +119,23 @@
 
 \begin{answer}
     $d \sample \{1, 2, 3, 4, 5, 6\}$. (You could have chosen any name for the variable in the place of $d$.)
+\end{answer}
+
+\begin{answer}
+    \color{blue} % new
+    To find $\Pr[B \mid A]$, we simply switch the places of $A$ and $B$ 
+    in the formula:
+    \[
+        \Pr[B \mid A] = \frac{\Pr[A \text{ and } B]}{\Pr[A]}
+    \]
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item 0; $B$ takes up none of $A$'s space.
+        \item $\frac{1}{16} \div \frac{1}{8} = \frac{1}{2}$; $B$ overlaps 
+        with half of $A$.
+        \item $\frac{1}{8} \div \frac{1}{8} = 1$; $B$ covers $A$, so if our 
+        outcome is in $A$, it is certainly in $B$.
+    \end{enumerate}
 \end{answer}
 
 \begin{answer}
