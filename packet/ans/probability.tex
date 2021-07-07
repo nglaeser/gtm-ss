@@ -1,0 +1,163 @@
+\section{Probability and Randomness}
+
+\begin{answer}
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item Sample space: 
+        \[
+            \{A\diamondsuit, 2\diamondsuit, 3\diamondsuit, \ldots, K\diamondsuit, 
+            A\heartsuit,\ldots,K\heartsuit,
+            A\spadesuit,\ldots,K\spadesuit,
+            A\clubsuit,\ldots,K\clubsuit\}  
+        \]
+        Probability distribution: 
+        \[
+            \left\{\frac{1}{52}, \ldots, \frac{1}{52}\right\} 
+        \]
+        (where $\frac{1}{52}$ is repeated 52 times).
+        \item Sample space:
+        \[
+            \{\text{registered}, \text{not registered}\}
+        \]
+        Probability distribution:
+        \[
+            \{0.95, 0.05\}
+        \]
+    \end{enumerate}
+\end{answer}
+
+\begin{answer}
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item \textbf{Uniform.} The deck is shuffled, so a card is equally likely 
+        to be in any one place in the deck.
+        \item \textbf{Not uniform.} You are more likely to draw a lower card if 
+        you draw from the beginning of the deck instead of the end.
+        \item \textbf{Not uniform.} Though it fluctuates, weather generally follows 
+        large-scale patterns that depend on the season, latitude and longitude,
+        the air masses present, and so on. This is called climate. The reason 
+        meteoroligists can predict the weather is precisely because it is 
+        not a uniformly random variable.
+        \item \textbf{Uniform.} Every number is equally likely to be rolled.
+        \item \textbf{Not uniform.} In fact, some birthdays are more likely to occur 
+        than others. Summer birthdays are slightly more common, for instance.\footnotemark
+        \footnotetext{You can see a visualization of the probability of each 
+        birthday here: \url{http://thedailyviz.com/2016/09/17/how-common-is-your-birthday-dailyviz/}.}
+    \end{enumerate}
+\end{answer}
+
+\begin{answer}
+    $d \sample \{1, 2, 3, 4, 5, 6\}$. (You could have chosen any name for the variable in the place of $d$.)
+\end{answer}
+
+\begin{answer}
+    \color{blue} % new
+    To find $\Pr[B \mid A]$, we simply switch the places of $A$ and $B$ 
+    in the formula:
+    \[
+        \Pr[B \mid A] = \frac{\Pr[A \text{ and } B]}{\Pr[A]}
+    \]
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item 0; $B$ takes up none of $A$'s space.
+        \item $\frac{1}{16} \div \frac{1}{8} = \frac{1}{2}$; $B$ overlaps 
+        with half of $A$.
+        \item $\frac{1}{8} \div \frac{1}{8} = 1$; $B$ covers $A$, so if our 
+        outcome is in $A$, it is certainly in $B$.
+    \end{enumerate}
+\end{answer}
+
+\begin{answer}
+    Let $c_1$ and $c_2$ be random variables representing the first and second
+    coin toss, respectively. Since the coin tosses are independent, 
+    \begin{align*}
+        & \Pr[c_1=H \text{ and } c_2=H]\\
+        =& \Pr[c_1=H] \cdot \Pr[c_2=H]\\
+        =& \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}
+    \end{align*}
+\end{answer}
+
+\begin{answer}
+    There are two ways of getting one heads outcome: (1) the first toss is heads 
+    ($c_1=H$), and we don't do another coin toss, or (2) the first toss comes up tails,
+    and the second one comes up heads ($c_1=T$ and $c_2=H$). 
+    
+    \begin{align*}
+        & \Pr[c_1=H] + \Pr[c_1=T \text{ and } c_2=H]\\
+        =& \Pr[c_1=H] + \Pr[c_2=H] \cdot \Pr[c_1=T] 
+        \tag{coin tosses are independent events}\\
+        =& \frac{1}{2} + \frac{1}{2}\cdot\frac{1}{2}\\
+        =& \frac{1}{2} + \frac{1}{4}\\
+        =& \frac{3}{4}
+    \end{align*}
+\end{answer}
+
+\begin{answer}
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item Rolling an even number means rolling 2, 4, \textbf{or} 6, each 
+        of which happen with probability $\frac{1}{6}$, so the probability of 
+        rolling and even number is $\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}$.
+
+        Another way to see this is that our roll has to land in the set 
+        $\{2,4,6\}$ and not in $\{1,3,5\}$. Because even number happens 
+        with equal probability and the sets are of equal size, the dice 
+        roll lands in each of the two sets with equal probability. So landing 
+        in one set happens with probability $\frac{1}{2}$.
+        \item This happens if the first roll is a 1 \textbf{and} the second roll 
+        is a 2. Each of those occurs with probability $\frac{1}{6}$, so the 
+        answer is $\frac{1}{6}\cdot \frac{1}{6} = \frac{1}{6\cdot6}=\frac{1}{36}$.
+        \item This can be broken down into cases based on the first roll:
+        \begin{align*}
+            &\Pr[\text{roll} > 1 \mid \text{first roll is }1]\cdot\Pr[\text{first roll is }1]\\
+            &+\Pr[\text{roll} > 2 \mid \text{first roll is }2]\cdot\Pr[\text{first roll is }2]\\
+            &+\Pr[\text{roll} > 3 \mid \text{first roll is }3]\cdot\Pr[\text{first roll is }3]\\
+            &+\Pr[\text{roll} > 4 \mid \text{first roll is }4]\cdot\Pr[\text{first roll is }4]\\
+            &+\Pr[\text{roll} > 5 \mid \text{first roll is }5]\cdot\Pr[\text{first roll is }5]\\
+            &+\Pr[\text{roll} > 6 \mid \text{first roll is }6]\cdot\Pr[\text{first roll is }6]\\
+        \end{align*}
+        \begin{align*}
+            =&\Pr[\text{roll} > 1]\cdot \frac{1}{6}
+            +\Pr[\text{roll} > 2]\cdot \frac{1}{6}\\
+            &+\Pr[\text{roll} > 3]\cdot \frac{1}{6}
+            +\Pr[\text{roll} > 4]\cdot \frac{1}{6}\\
+            &+\Pr[\text{roll} > 5\cdot] \frac{1}{6}
+            +\Pr[\text{roll} > 6]\cdot \frac{1}{6}\\
+            =& \frac{1}{6} \left(
+                \frac{5}{6}+\frac{4}{6}+\frac{3}{6}+\frac{2}{6}+\frac{1}{6}+0
+            \right)\\
+            =& \frac{1}{6} \left( \frac{15}{6}\right)\\
+            =& \frac{1}{6} \cdot \frac{5}{2} = \frac{5}{12}
+        \end{align*}
+        \item Either I roll a 5 or 6 on my first roll, or I roll a 1 and my second roll is 
+        a 5 or 6:
+        \begin{align*}
+            &\Pr[\text{first roll is }5]
+            +\Pr[\text{first roll is }6]\\
+            &+\left(\Pr[\text{second roll is }5 \mid \text{first roll is }1]+
+            \Pr[\text{second roll is }6 \mid \text{first roll is }1]\right)\\
+            &\cdot\Pr[\text{first roll is }1]\\
+            =&\frac{1}{6}+\frac{1}{6}+\left(\frac{1}{6}+\frac{1}{6}\right)\frac{1}{6}\\
+            =&\frac{1}{3}+\left(\frac{1}{3}\right)\frac{1}{6}\\
+            =&\frac{1}{3}+\frac{1}{18}\\
+            =&\frac{7}{18}
+        \end{align*}
+    \end{enumerate}
+\end{answer}
+
+\begin{answer}
+    \renewcommand{\labelenumi}{(\alph{enumi})}
+    \begin{enumerate}
+        \item \textbf{indistinguishable:} 
+        both $\left\{\frac{1}{2},\frac{1}{2}\right\}$
+        \item \textbf{not indistinguishable:}
+        the uniform distribution with all probabilities equal to 
+        $\frac{1}{52}$ is not the same as the uniform distribution 
+        with all probabilities $\frac{1}{6}\left(\frac{1}{2}\right)^3 
+        = \frac{1}{48}$.
+        \item \textbf{indistinguishable:}
+        $\left\{\frac{1}{4},3\left(\frac{1}{4}\right)\right\} 
+        = \left\{\frac{13}{52},\frac{39}{52}\right\} 
+        = \left\{\frac{1}{4},\frac{3}{4}\right\}$
+    \end{enumerate}
+\end{answer}

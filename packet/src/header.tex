@@ -1,0 +1,84 @@
+\usepackage{amsmath, amssymb, amsfonts, setspace, stmaryrd, amsthm, graphicx, tikz}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usetikzlibrary{positioning}% To get more advanced positioning options
+\usetikzlibrary{arrows}% To get more arrow heads
+\usepackage{hyperref} % Allows to make references and links clickable
+
+\usepackage[margin=1.5in]{geometry}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+%%align* environment
+\newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
+
+% Math commands
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\C}{\mathbb{C}}
+\DeclareMathOperator{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+
+%%%% added by NG
+\usetikzlibrary{shapes,backgrounds,decorations,patterns}
+\usepackage{pgfplots}
+\usepackage{xurl}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\usepackage{colortbl}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+% externalize the figures
+% \usepgfplotslibrary{external
+% \tikzexternalize
+
+% Crypto commands
+\usepackage{cryptocode}
+\newcommand{\sample}{\hskip2.3pt{\gets\!\!\mbox{\tiny${\$}$\normalsize}}\,}
+\def\D{\ensuremath{\mathcal{D}}}
+\def\A{\ensuremath{\mathcal{A}}}
+\def\ss{\ensuremath{\mathcal{S}}}
+\def\bin{\ensuremath{\{0, 1\}}}
+
+%comments
+\newcommand{\nsm}[1]{\textcolor{teal}{(NG: #1)}}
+\newcommand{\new}[1]{\textcolor{blue}{#1}}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+% \newcommand{\todo}[1]{#1}
+
+\renewcommand\abstractname{Introduction}
+
+%%% Exercises & Examples
+\newcounter{exercise}[section]
+\newenvironment{exercise}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
+\newcommand{\exref}[1]{\hyperref[#1]{\thesection.\ref*{#1}}}
+
+\newenvironment{bonus}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{*Bonus Exercise*~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
+
+\newcounter{example}[section]
+\newenvironment{example}{\refstepcounter{example}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{Example~\thesection.\theexample }  \rmfamily}{\end{quotation}\par\bigskip}
+
+%%% Answers
+\newcounter{answer}[section]
+\newenvironment{answer}{%
+\refstepcounter{answer}
+\par\bigskip 
+\begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{Answer~\thesection.\theanswer }  \rmfamily}
+{\end{quotation}\par\bigskip}
+
+\newenvironment{bonusA}{%
+\refstepcounter{answer}
+\par\bigskip 
+\begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{*Bonus Answer*~\thesection.\theanswer }  \rmfamily}
+{\end{quotation}\par\bigskip}
+
+\newenvironment{sampleA}{%
+\refstepcounter{answer}
+\par\bigskip 
+\begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
+    \noindent \textbf{Sample Answer~\thesection.\theanswer }  \rmfamily}
+{\end{quotation}\par\bigskip}
