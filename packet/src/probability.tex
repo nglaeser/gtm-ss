@@ -61,8 +61,8 @@ $\frac{1}{2}$.
     Write ``uniform'' or ``not uniform'' for each of the following random variables:
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
-        \item Drawing a card from a shuffled deck.
-        \item Drawing a card from an ordered deck.
+        \item Drawing a card from the top of a shuffled deck.
+        \item Drawing a card from the top of an ordered deck.
         \item The weather on a given day.
         \item The outcome of a dice roll.
         \item The birthday of the first person you encounter on the street.
@@ -240,7 +240,6 @@ the second, we are using the extra information that $B$ happened to
 limit the world of possibilities. Let's see some concrete examples next.
 
 \begin{example}\label{ex:cond-vis}
-    \color{blue} % new
     Consider the following sample space, where each number is chosen with 
     equal probability.
     Throughout the example, let $B = \{3,4,7,8,11,12,15,16\}$ (the shaded 
@@ -401,7 +400,6 @@ limit the world of possibilities. Let's see some concrete examples next.
 \end{example}
 
 \begin{exercise}
-    \color{blue} % new
     Repeat Example~\exref{ex:cond-vis}, calculating $\Pr[B \mid A]$ instead.
 \end{exercise}
 
@@ -535,8 +533,8 @@ indistinguishable.
     \begin{enumerate}
         \item $D_1$: Rolling an even or an odd number on a 6-sided die, 
         $D_2$: getting heads or tails when you flip a coin
-        \item $D_1$: Drawing a random card from a deck, $D_2$: rolling a 6-sided 
-        die and flipping 3 coins
+        \item $D_1$: Drawing a random card from a shuffled deck, 
+        $D_2$: rolling a 6-sided die and flipping 3 coins
         \item $D_1$: Whether or not you get at least one heads when flipping
         two coins, $D_2$: whether or not you draw a club from a shuffled 
         deck.
@@ -568,7 +566,7 @@ The exact level of security of a scheme is determined by a \emph{security
 parameter}, which is a number that's often denoted by the symbol $\lambda$ 
 (the Greek letter lambda). The people using a scheme will generally decide 
 on the security parameter ahead of time based on how secure they want to
-\new{keep their information}. 
+keep their information. 
 There's usually a tradeoff between security and efficiency, so the 
 parties will settle on a $\lambda$ that makes them feel safe enough without 
 making their computations prohibitively slow (hours, days, or weeks).
