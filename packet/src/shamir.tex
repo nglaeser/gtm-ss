@@ -313,15 +313,39 @@ for that point, into the summation, and we'll end up with a polynomial.
 If we did everything right, that will be exactly the polynomial defined 
 by those points.
 
+\new{This looks pretty complicated, but there's a pattern to be seen here.
+If we let $x = x_j$ for any $j \neq 2$, what does $\ell_i(x)$ evaluate 
+to? In every case, one of the numerators will end up being 0. Since 
+anything multiplied by 0 is 0, the whole expression will be 0---except 
+when $x = x_2$ in our example, or more generally, when $x=x_i$. In fact,
+in these cases, the expression always evaluates to 1.}
+
+\begin{align*}
+    \color{blue}
+    \ell_i(x_j) = \begin{cases}
+        0 & \text{if $i \neq j$}\\
+        1 & \text{if $i=j$}
+    \end{cases}
+\end{align*}
+
+\new{What does this pattern mean? Looking back at Equation~\ref{eqn:lagrange},
+when we plug some $x_j$ into $P(x)$, we'll get a sum of expressions that 
+are all 0 except for one, which will be $y_i \ell_i(x_i) = y_i$. This 
+means that, by construction, $P(x_i) = y_i$ for all $i$, which is just 
+what we want.}
+
+% \todo{$\ell_i(x)$ is a polynomial that is 0 for all $x \neq i$.
+% This way, $P(x)$ is a sum of terms that are all zero except 
+% for the one with the $y_i$ corresponding to $x=i$. Could 
+% do a quick exercise evaluating $\ell_i(x)$ for all $i$ for 
+% fixed $x$ as part of Example 3.1.}
+
 Let's work through an example using the degree-1 polynomial we plotted in Section~\ref{sec:unique}:
 we'll use the points $(1,1), (3,5)$ to recover the equation of the line. Remember that,
 in this packet, we start numbering the elements of a set at 0, so $(x_0,y_0)
 = (1,1)$ and $(x_1, y_1) = (3,5)$.
 
 \begin{example}
-Use Lagrange interpolation to get a degree-1 polynomial passing through the points 
-$(1,1), (3,5)$.
-
 Since we have $2$ points, $m=2$:
 \begin{align*}
     P(x) &= \sum_{i=0}^{1} y_i \ell_i(x)\\
@@ -347,7 +371,24 @@ Now let's evaluate the polynomials $\ell_i(x)$:
     % \ell_i(x) &= \prod_{\substack{j=0\\j\neq i}}^{n-1} \frac{x-x_j}{x_i-x_j}
 \end{align*}
 
-Plugging that back into the sum, we get
+Let's pause for a moment to investigate the pattern with the $\ell_i$s. 
+We'll fix the value of $x$ and evaluate both $\ell_0$ and $\ell_1$. Starting 
+with $x=x_0=1$:
+\begin{align*}
+    \ell_0(x_0) &= \frac{x_0-3}{-2} = \frac{1-3}{-2} = \frac{-2}{-2} = 1\\
+    \ell_1(x_0) &= \frac{x_0-1}{2} = \frac{1-1}{2} = 0
+\end{align*}
+Now $x=x_1=3$:
+\begin{align*}
+    \ell_0(x_1) &= \frac{x_1-3}{-2} = \frac{3-3}{-2} = 0\\
+    \ell_1(x_1) &= \frac{x_1-1}{2} = \frac{3-1}{2} = \frac{2}{2} = 1
+\end{align*}
+
+Just as we deduced above! 
+\hfill\\
+
+To return to our main task of computing $P(x)$, let's plug the expressions 
+for $\ell_0$ and $\ell_1$ back into the summation:
 
 \begin{align*}
     P(x) &= 1 \cdot \ell_0(x) + 5 \cdot \ell_1(x)\\
@@ -358,10 +399,10 @@ Plugging that back into the sum, we get
     = 2x-1\\
 \end{align*}
 
-That's the same equation as the one we graphed!
+...and we've recovered the same equation we graphed earlier!
 \end{example}
 
-\begin{example}
+\begin{example}\label{ex:lagrange2}
 Let's do the degree-2 example from Section~\ref{sec:unique} next. Our set of 
 points is $\{(0,3),(1,0),(4,3)\}$ and $m=3$.
 \begin{align*}
@@ -409,6 +450,17 @@ Now we can simplify $P(x)$ to get:
 
 and again we've arrived at the same polynomial we graphed.
 \end{example}
+
+\begin{exercise}
+    Using the points and expressions in Example~\exref{ex:lagrange2},
+    evaluate $\ell_0(x), \ell_1(x), \ell_2(x)$ at the following points:
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item $x_0$
+        \item $x_1$
+        \item $x_2$
+    \end{enumerate}
+\end{exercise}
 
 \begin{bonus}
     Use Lagrange interpolation to find the unique degree-2 

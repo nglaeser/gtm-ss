@@ -9,7 +9,7 @@ tails. (This is called the \emph{sample space} of $c$.) We write
 that $c \in \{H,T\}$, where the symbol $\in$ is read aloud as 
 ``is an element of'' or simply ``is in''.
 The value of $c$ is described by the distribution $\left\{\frac{1}{2}, 
-\frac{1}{2}\right\}$, which says that each outcome happens with 
+\frac{1}{2}\right\}$ \new{over the set $\{H,T\}$}, meaning each outcome ($H$ or $T$) happens with 
 probability one-half.
 
 \begin{example}\label{ex:prob-dist}
@@ -49,7 +49,11 @@ probability distribution. A random variable is \emph{uniformly random} if every 
 value is equally likely. We call this probability distribution the 
 \emph{uniform distribution}. The variable $c$ is uniformly random (or simply \emph{uniform})
 since $H$ and $T$ occur with equal probability, namely both with probability 
-$\frac{1}{2}$.
+$\frac{1}{2}$. \new{We say such a variable is ``chosen uniformly at random'' 
+(sometimes shortened to ``chosen uniformly'') and denote this with the symbol 
+$\sample$. For instance, the coin toss example is written as $c \sample \{H, T\}$, 
+meaning that $c$ is sampled uniformly from the set $\{H, T\}$.}
+
 % \new{Additionally, we can abbreviate the uniform probability distribution 
 % over $\{H,T\}$ as $U(H,T)$, where the $U$ stands for ``uniform''. \todo{since 
 % there are two elements in the parentheses, it's implied that each has probability 
@@ -68,12 +72,6 @@ $\frac{1}{2}$.
         \item The birthday of the first person you encounter on the street.
     \end{enumerate}
 \end{exercise}
-
-When a random variable is uniform, we say it is chosen \emph{uniformly at random} 
-(sometimes shortened to chosen \emph{uniformly}) and denote this with the symbol 
-$\sample$. For example, the outcome $c$ of a coin toss can be written as $c \sample 
-\{H, T\}$ to mean that $c$ is sampled uniformly from the set $\{H, T\}$. 
-% \nsm{Link to an external resource instead of explaining everything.}
 
 \begin{exercise}
     How would you represent a dice roll using the $\sample$ notation?
@@ -153,7 +151,9 @@ than if it's clear. We can write this as
     \Pr[\text{raining} \mid \text{clear sky}]
 \]
 
-The following equality about conditional probability always holds:
+The following equality about conditional probability always holds\footnotemark:
+\footnotetext{With the caveat is that we cannot condition on a zero-probability
+event (that is, we require $\Pr[B] \neq 0$) since we cannot divide by zero.}
 \begin{subequations}\label{eq:conditional}
     \begin{equation}
         \Pr[A \mid B] = \frac{\Pr[A \text{ and } B]}{\Pr[B]}
@@ -500,34 +500,67 @@ case, if the events aren't mutually exclusive, we use conditional probability
 \end{exercise}
 
 When two random variables have the same underlying probability 
-distribution, we say they are \emph{indistinguishable}. For example,
-if $c \in \{HHH, HHT,\allowbreak HTH, HTT, THH, THT, TTH, TTT\}$ 
-is the random variable representing the outcome of three coin tosses,
-the probability distribution of $c$ is 
+distribution, we say they are \new{\emph{perfectly indistinguishable}. 
+For example, if $d_1 \in \{1,2,3,4,5,6\}$ is the random variable 
+representing the outcome of rolling a 6-sided die, the probability 
+distribution of $d_1$ is}
 \begin{align*}
+    \color{blue}
     \left\{
-        \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8},
-        \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8}
+        \frac{1}{6},\frac{1}{6},\frac{1}{6},
+        \frac{1}{6},\frac{1}{6},\frac{1}{6}
     \right\}
 \end{align*}
+\new{where each probability is the probability that $c$ takes on the 
+corresponding value in the sample space.}
 
-where each probability is the probability that $c$ takes on the 
-corresponding value in the sample space.
-
-Compare this to the probability distribution of the random 
-variable $d \in \{1,2,3,4,5,6,7,8\}$ for rolling an 8-sided die:
-\[
+\new{Let's compare this to rolling a 12-sided die and dividing the result 
+by 2, rounding up to the nearest whole number. That is, if we roll a 
+1 or 2 on the die, the result is 1, if we roll a 3 or 4, the result 
+is 2, and so on.
+Then the probability distribution over this random variable (call it 
+$d_2$) is over the sample space $\{1,2,3,4,5,6\}$, with values }
+\begin{align*}
+    \color{blue}
     \left\{
-        \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8},
-        \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8}
+        \frac{1}{6},\frac{1}{6},\frac{1}{6},
+        \frac{1}{6},\frac{1}{6},\frac{1}{6}
     \right\}
-\]
+\end{align*}
+\new{The sample space is the same in both cases, and each outcome in that sample
+space occurs with the same probability in both distributions. So they're
+the same distribution! Therefore $d_1$ and $d_2$ are perfectly indistinguishable.}
 
-They're the same distribution! Therefore $c$ and $d$ are 
-indistinguishable.
+% \todo{For example,
+% if $c \in \{HHH, HHT,\allowbreak HTH, HTT, THH, THT, TTH, TTT\}$ 
+% is the random variable representing the outcome of three coin tosses,
+% the probability distribution of $c$ is }
+% \begin{align*}
+%     \color{red}
+%     \left\{
+%         \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8},
+%         \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8}
+%     \right\}
+% \end{align*}
+
+% \todo{where each probability is the probability that $c$ takes on the 
+% corresponding value in the sample space.}
+
+% \todo{Compare this to the probability distribution of the random 
+% variable $d \in \{1,2,3,4,5,6,7,8\}$ for rolling an 8-sided die:}
+% \[
+%     \color{red}
+%     \left\{
+%         \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8},
+%         \frac{1}{8},\frac{1}{8},\frac{1}{8},\frac{1}{8}
+%     \right\}
+% \]
+
+% \todo{They're the same distribution! Therefore $c$ and $d$ are perfectly
+% indistinguishable.}
 
 \begin{exercise}
-    Write ``indistinguishable'' or ``not indistinguishable''
+    Write ``perfectly indistinguishable'' or ``not perfectly indistinguishable''
     for each pair of probability distributions $D_1, D_2$:
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
@@ -545,7 +578,7 @@ indistinguishable.
 
 As we'll see, randomness plays an extremely important role in modern cryptographic
 schemes. A cryptographic \emph{scheme} is a well-defined procedure for accomplishing 
-some goal (called a \emph{cryptographic primitive}). For example, the Caesar 
+some \todo{blueprint with desirable properties} (called a \emph{cryptographic primitive}). For example, the Caesar 
 cipher is an encryption scheme\footnotemark, meaning it is a procedure for accomplishing
 the cryptographic primitive of encryption. 
 In this packet, you'll learn about several \emph{secret sharing} schemes.
@@ -562,17 +595,19 @@ the assumed difficulty of factoring\footnotemark.
 \footnotetext{When a scheme is protected by how hard it is 
 to compute something, it is said to be \emph{computationally secure}.}
 
-The exact level of security of a scheme is determined by a \emph{security 
+\nsm{Not sure which security notion (perfect or statistical) I'm proving 
+for the scheme later...}
+\todo{The exact level of security of a scheme is determined by a \emph{security 
 parameter}, which is a number that's often denoted by the symbol $\lambda$ 
 (the Greek letter lambda). The people using a scheme will generally decide 
 on the security parameter ahead of time based on how secure they want to
 keep their information. 
 There's usually a tradeoff between security and efficiency, so the 
 parties will settle on a $\lambda$ that makes them feel safe enough without 
-making their computations prohibitively slow (hours, days, or weeks).
+making their computations prohibitively slow (hours, days, or weeks).}
 % We'll learn more about this in Section~\ref{sec:proof}.
 % TODO: future version could have an example where lambda is too small 
 % and show that an adversary can guess $s_1$ with non-negligible probability.
 
-Lambda is usually set to a large power of two, like 128 or 256; to keep 
-numbers reasonable in this packet, though, we'll let $\lambda=10$.
+\todo{Lambda is usually set to a large power of two, like 128 or 256; to keep 
+numbers reasonable in this packet, though, we'll let $\lambda=10$.}
