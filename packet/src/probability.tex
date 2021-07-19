@@ -594,20 +594,3 @@ the assumed difficulty of factoring\footnotemark.
 
 \footnotetext{When a scheme is protected by how hard it is 
 to compute something, it is said to be \emph{computationally secure}.}
-
-\nsm{Not sure which security notion (perfect or statistical) I'm proving 
-for the scheme later...}
-\todo{The exact level of security of a scheme is determined by a \emph{security 
-parameter}, which is a number that's often denoted by the symbol $\lambda$ 
-(the Greek letter lambda). The people using a scheme will generally decide 
-on the security parameter ahead of time based on how secure they want to
-keep their information. 
-There's usually a tradeoff between security and efficiency, so the 
-parties will settle on a $\lambda$ that makes them feel safe enough without 
-making their computations prohibitively slow (hours, days, or weeks).}
-% We'll learn more about this in Section~\ref{sec:proof}.
-% TODO: future version could have an example where lambda is too small 
-% and show that an adversary can guess $s_1$ with non-negligible probability.
-
-\todo{Lambda is usually set to a large power of two, like 128 or 256; to keep 
-numbers reasonable in this packet, though, we'll let $\lambda=10$.}
