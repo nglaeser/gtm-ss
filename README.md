@@ -14,6 +14,6 @@ This repo uses a [pre-commit Git hook](https://githooks.com/) to clear the outpu
 
 The pre-commit script (which is run before every `git commit`) is [pre-commit.sh](pre-commit.sh). If you clone this repo and wish to use this Git hook as well, "install" the hook by running
 ```
-ln -s pre-commit.sh .git/hooks/pre-commit
+ln -s ../../pre-commit.sh .git/hooks/pre-commit
 ```
 in the root of this repo.
