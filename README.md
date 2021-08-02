@@ -17,7 +17,3 @@ The pre-commit script (which is run before every `git commit`) is [pre-commit.sh
 ln -s ../../pre-commit.sh .git/hooks/pre-commit
 ```
 in the root of this repo.
-
-```
-test
-```
