@@ -5,6 +5,8 @@ Introducing high schoolers to cryptographic secret sharing and proofs.
 ## [Packet](./packet)
 *[Girls Talk Math Camp 2021](http://gtm.math.umd.edu/virtualcamp2021.html) at UMD*
 
+A (potentially outdated) version of the packet can also be found on the UMD Girls Talk Math GitHub [here](https://github.com/girlstalkmath-umd/secret-sharing). If I make any edits, they will show up in this repo before the other link (if they show up there at all).
+
 ## [Spring Activity](./spring)
 *[Girls Talk Math Spring Event](spring/presentation/GTMSpring2021Program.pdf) held on May 22, 2021.*
 
