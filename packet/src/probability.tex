@@ -38,21 +38,21 @@ probability one-half.
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
         \item Card drawn from a shuffled deck.
-        \item Registration status of students at a 2000-person high school 
+        \item Whether or not a student is registered for classes at a 2000-person high school 
         where all but 100 students register for classes every year.
     \end{enumerate}
 \end{exercise}
 
-A variable like $c$ that represents an outcome or event is called a \emph{random 
+A variable that represents an outcome or event (like the outcome $c$ of the coin toss we talked about earlier) is called a \emph{random 
 variable}, since it can take on one of several values based on an underlying 
 probability distribution. A random variable is \emph{uniformly random} if every possible 
-value is equally likely. We call this probability distribution the 
-\emph{uniform distribution}. The variable $c$ is uniformly random (or simply \emph{uniform})
+value is equally likely. We call the corresponding probability distribution the 
+\emph{uniform distribution} for that sample space. The variable $c$ is uniformly random (or simply \emph{uniform}) over the sample space $\{H, T\}$
 since $H$ and $T$ occur with equal probability, namely both with probability 
-$\frac{1}{2}$. \new{We say such a variable is ``chosen uniformly at random'' 
-(sometimes shortened to ``chosen uniformly'') and denote this with the symbol 
+$\frac{1}{2}$. (Another uniform distribution, this time for the sample space $\{1, 2, 3, 4, 5, 6\}$, is shown in Example~\exref{ex:prob-dist}b above). We say such a variable is ``sampled uniformly at random'' 
+(sometimes shortened to ``sampled uniformly'') and denote this with the symbol 
 $\sample$. For instance, the coin toss example is written as $c \sample \{H, T\}$, 
-meaning that $c$ is sampled uniformly from the set $\{H, T\}$.}
+meaning that $c$ is sampled uniformly from the set $\{H, T\}$.
 
 % \new{Additionally, we can abbreviate the uniform probability distribution 
 % over $\{H,T\}$ as $U(H,T)$, where the $U$ stands for ``uniform''. \todo{since 
@@ -97,12 +97,23 @@ vice versa), we can add their probabilities:
     &= \frac{1}{2} + \frac{1}{2} = 1
 \end{align*}
 
-Notice that these probabilities sum to 1. 
+\setlength\fboxsep{1em}        
+\begin{center}
+\fbox{
+    \begin{minipage}{.7\linewidth}
+        \textsc{``Or'' rule of probabilities.} \\
+        If two events $A, B$ are mutually exclusive,
+        \[ \Pr[A \text{ or } B] = \Pr[A] + \Pr[B]\]
+    \end{minipage}
+}
+\end{center}
+
+Notice that the probabilities of a heads outcome and a tails outcome summed to 1. 
 This is a common requirement of all probability distributions: the sum of their 
-probabilities must be 1. This is the same as saying that \emph{one of} the possible events 
-in the distribution happens with 100\% probability. If the sum was less than 1, it 
-would mean that there's some other event that could happen instead, so the distribution
-is incomplete. % If it was greater than 1, then the 
+probabilities must be 1. This is the same as saying that whatever happens is 100\% likely to be one of the events 
+in the sample space. If the sum was less than 1, it 
+would mean that there's some other event that could happen instead, so the sample space
+is incomplete.
 
 The pie charts below illustrate this idea. On the left is the probability 
 distribution of a coin toss; on the right, the probability distribution 
@@ -140,7 +151,7 @@ where $d$ is the random variable representing the outcome of the die roll.
 \hfill\\
 
 Conditional probability is the probability that something occurs 
-provided that another event occurred. This is written with the symbol 
+\emph{assuming that another event has already happened}. This is written with the symbol 
 $\mid$, which is read aloud as ``given''. So, $\Pr[A \mid B]$ is 
 read as ``the probability of $A$ given $B$''.
 
@@ -237,7 +248,9 @@ divided by $\Pr[B]$!
 The difference is the reference frame: in the first diagram, we are in a 
 world in which we make no assumptions: all possibilities are open. In 
 the second, we are using the extra information that $B$ happened to 
-limit the world of possibilities. Let's see some concrete examples next.
+limit the world of possibilities. 
+
+Let's see some concrete examples next.
 
 \begin{example}\label{ex:cond-vis}
     Consider the following sample space, where each number is chosen with 
@@ -305,7 +318,7 @@ limit the world of possibilities. Let's see some concrete examples next.
             Then, using Equation~\ref{eqn:conditional_mid}, $\Pr[A \mid B] 
             = \Pr[A \text{ and } B] \div \Pr[B] = 0 \div \frac{1}{2} = 0$.
             Using the visual intuition we gained with the Venn diagrams, 
-            we can justify this by saying that $A$ occupies 0 of the space
+            we can justify this by saying that $A$ occupies none (``0'') of the space
             of $B$.
 
         \item Now let $A = \{10,11\}$:
@@ -373,6 +386,10 @@ limit the world of possibilities. Let's see some concrete examples next.
     \end{enumerate}
 \end{example}
 
+\begin{exercise}
+    Repeat Example~\exref{ex:cond-vis}, calculating $\Pr[B \mid A]$ instead.
+\end{exercise}
+
 \begin{example}
     Suppose your friend rolls a die without showing you the result.
     You know the probability that they rolled a 3 is $\frac{1}{6}$. Now 
@@ -399,15 +416,10 @@ limit the world of possibilities. Let's see some concrete examples next.
     \end{align*}
 \end{example}
 
-\begin{exercise}
-    Repeat Example~\exref{ex:cond-vis}, calculating $\Pr[B \mid A]$ instead.
-\end{exercise}
-
 In some cases, such as Example~\exref{ex:cond-vis}b, we have $\Pr[A \mid 
 B]=\Pr[A]$. Intuitively, this means 
 that the probability of $A$ is the same regardless of whether or not $B$
-happened. For example, a good coin toss should be independent of the coin 
-used for the toss or the person doing the toss.
+happened. For example, a fair coin toss should have the same distribution regardless of whether you (event $A$) or I (event $B$) tossed the coin.
 In these cases, we say that $A$ and $B$ are \emph{independent} events, and 
 their corresponding random variables are independent. Then Equation~\ref{eqn:conditional_and}
 simplifies to 
@@ -417,11 +429,24 @@ simplifies to
 This means that for independet random variables, we can just multiply the probabilities 
 of two events together to get the probability that both events happen simultaneously.
 
+\setlength\fboxsep{1em}        
+\begin{center}
+\fbox{
+    \begin{minipage}{.7\linewidth}
+        \textsc{``And'' rule of probabilities.} \\
+        For any two events $A, B$,
+        \[\Pr[A \text{ and } B] = \Pr[A \mid B] \cdot \Pr[B]\]
+        If $A$ and $B$ are independent,
+        \[ \Pr[A \text{ and } B] = \Pr[A] \cdot \Pr[B]\]
+    \end{minipage}
+}
+\end{center}
+
 \begin{example}
     Suppose I roll a die and flip a coin. What's the probability that I roll a 1 
     \emph{and} get heads?
 
-    Our first instinct might be to list out all of the possible 
+    The most straightforward approach might be to list out all of the possible 
     combinations of events; for each outcome of the roll, there is a tails and a 
     heads option:
 
@@ -452,13 +477,13 @@ of two events together to get the probability that both events happen simultaneo
 \end{exercise}
 
 Let's put everything we've learned so far together and work through some examples. 
-Remember, for the \textbf{or} of two mutually exclusive events, we add; 
-for the \textbf{and} of two independent events, we multiply. In the latter 
-case, if the events aren't mutually exclusive, we use conditional probability 
+Remember, for the \textbf{or} of two \emph{mutually exclusive} events, we add; 
+for the \textbf{and} of two \emph{independent} events, we multiply. In the latter 
+case, if the events aren't independent, we use conditional probability 
 (Equations~\ref{eqn:conditional_mid} and~\ref{eqn:conditional_and}).
 
 \begin{example}
-    Say I flip a fair coin twice. What's the probability of getting the 
+    Say I flip a coin twice. What's the probability of getting the 
     same result both times?
 
     There are two ways of getting the same result on both flips: we either 
@@ -467,12 +492,12 @@ case, if the events aren't mutually exclusive, we use conditional probability
         \Pr[HH] + \Pr[TT]
     \]
 
-    Because subsequent coin flips are independent of each other, this is equal to 
+    Because subsequent coin flips are independent of each other, and the events HH and TT are mutually exclusive, this is equal to 
     \[
         \Pr[H]\cdot \Pr[H] + \Pr[T]\cdot\Pr[T]
     \]
 
-    Since the coin is fair, each outcome (heads or tails) happens with equal 
+    Each outcome (heads or tails) happens with equal 
     probability, so this equals
     \begin{align*}
         & \frac{1}{2}\cdot\frac{1}{2} + 
@@ -484,23 +509,23 @@ case, if the events aren't mutually exclusive, we use conditional probability
 
 \begin{exercise}
     Suppose I only flip a coin again if my first coin toss came out tails. 
-    What's the probability of getting one heads outcome?
+    What's the probability of getting heads once?
 \end{exercise}
 
 \begin{exercise} The following questions deal with rolling a 6-sided die.
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
         \item What's the probability of rolling an even number?
-        \item What's the probability of rolling a 1 followed immediately by a 2?
+        \item If I roll twice, what's the probability of rolling a 1 followed immediately by a 2?
         \item If I roll twice, what's the probability that my second roll will 
         be higher than my first?
         \item Suppose that when I roll a 1, I get to reroll and use the 
-        second number instead. What's the probability of rolling a 5 or higher?
+        second number instead. What's the probability that the result will be a 5 or higher?
     \end{enumerate}
 \end{exercise}
 
 When two random variables have the same underlying probability 
-distribution, we say they are \new{\emph{perfectly indistinguishable}. 
+distribution and sample space, we say they are \new{\emph{perfectly indistinguishable}. 
 For example, if $d_1 \in \{1,2,3,4,5,6\}$ is the random variable 
 representing the outcome of rolling a 6-sided die, the probability 
 distribution of $d_1$ is}
@@ -564,13 +589,13 @@ the same distribution! Therefore $d_1$ and $d_2$ are perfectly indistinguishable
     for each pair of probability distributions $D_1, D_2$:
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
-        \item $D_1$: Rolling an even or an odd number on a 6-sided die, 
-        $D_2$: getting heads or tails when you flip a coin
         \item $D_1$: Drawing a random card from a shuffled deck, 
         $D_2$: rolling a 6-sided die and flipping 3 coins
         \item $D_1$: Whether or not you get at least one heads when flipping
-        two coins, $D_2$: whether or not you draw a club from a shuffled 
+        two coins, $D_2$: whether or not you \emph{don't} draw a club from a shuffled 
         deck.
+        \item $D_1$: Rolling an even or an odd number on a 6-sided die, 
+        $D_2$: getting heads or tails when you flip a coin
     \end{enumerate}
 \end{exercise}
 
@@ -578,10 +603,10 @@ the same distribution! Therefore $d_1$ and $d_2$ are perfectly indistinguishable
 
 As we'll see, randomness plays an extremely important role in modern cryptographic
 schemes. A cryptographic \emph{scheme} is a well-defined procedure for accomplishing 
-some \todo{blueprint with desirable properties} (called a \emph{cryptographic primitive}). For example, the Caesar 
+some some \emph{cryptographic primitive} (a general concept with desirable properties, like a sort of ``blueprint''). For example, the Caesar 
 cipher is an encryption scheme\footnotemark, meaning it is a procedure for accomplishing
 the cryptographic primitive of encryption. 
-In this packet, you'll learn about several \emph{secret sharing} schemes.
+In the rest of this packet, you'll learn about several \emph{secret sharing} schemes.
 \footnotetext{Note, however, that it is \emph{not} a secure encryption scheme!
 You can learn more about how the Caesar cipher works and its weakness 
 here: \url{https://www.khanacademy.org/computing/computer-science/cryptography/crypt/v/caesar-cipher}.}
@@ -593,4 +618,4 @@ the schemes in the RSA cryptography packet, whose security depends on
 the assumed difficulty of factoring\footnotemark.
 
 \footnotetext{When a scheme is protected by how hard it is 
-to compute something, it is said to be \emph{computationally secure}.}
+to compute something, it is instead said to be \emph{computationally secure}.}

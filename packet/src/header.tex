@@ -12,6 +12,17 @@
 %%align* environment
 \newcommand{\eq}[1]{\begin{align*}#1\end{align*}}
 
+% symbol footnotes
+\newcounter{savefootnote}
+\newcommand{\astfootnote}[1]{%
+   \setcounter{savefootnote}{\value{footnote}}%
+   \let\oldthefootnote=\thefootnote%
+   \renewcommand{\thefootnote}{*}%
+   \footnote{#1}%
+   \let\thefootnote=\oldthefootnote%
+   \setcounter{footnote}{\value{savefootnote}}%
+}
+
 % Math commands
 \DeclareMathOperator{\R}{\mathbb{R}}
 \DeclareMathOperator{\C}{\mathbb{C}}
