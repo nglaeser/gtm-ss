@@ -30,6 +30,52 @@
     \end{enumerate}
 \end{answer}
 
+\begin{answer}
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        axis x line=center,
+        xlabel={$x$},
+        axis y line=center,
+        ylabel={$y$},
+        xmin=-1.5,
+        xmax=5.5,
+        ymin=-1.5,
+        ymax=8.5,
+        grid,
+    ]
+        % part a
+        \node [magenta] (point-a1) at (axis cs: 3,2) {\textbullet};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,magenta,dashed]{-2*x+8};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,magenta,dashed]{.33*x+1};
+        % part b
+        \node [cyan] (point-b1) at (axis cs: 0,0) {\textbullet};
+        \node [cyan] (point-b2) at (axis cs: 2,2) {\textbullet};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,cyan,thick]{x};
+        % part c
+        \node [green] (point-c1) at (axis cs: 1,3) {\textbullet};
+        \node [green] (point-c2) at (axis cs: 3,4) {\textbullet};
+        \node [green] (point-c3) at (axis cs: 4,5) {\textbullet};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,green,dashed]{.5*x+2.5};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,green,dashed]{x+1};
+        % part d
+        \node (point-d1) at (axis cs: -1,1) {\textbullet};
+        \node (point-d2) at (axis cs: 0,3) {\textbullet};
+        \node (point-d3) at (axis cs: 2,7) {\textbullet};
+        \addplot[domain=-1.5:5.5,samples=50,mark=none,thick]{2*x+3};
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+
+    \renewcommand{\labelenumi}{(\alph{enumi})} 
+    \begin{enumerate}
+        \item No; there are not enough points to define a \emph{unique} degree-1 polynomial, and in fact there are infinitely many degree-1 polynomials passing through this point. (In \textcolor{magenta}{pink} above.)
+        \item Yes; these points uniquely define the polynomial $f(x) = x$. (In \textcolor{cyan}{light blue} above.)
+        \item No; there is no degree-1 polynomial passing through these points because they are not properly aligned. However, they do define a unique degree-2 polynomial. (In \textcolor{green}{green} above.)
+        \item Yes; these points uniquely define the polynomial $f(x) = 2x + 3$. (In black above.)
+    \end{enumerate}
+\end{answer}
+
 \subsubsection{Lagrange Interpolation*}
 \begin{answer}
     \renewcommand{\labelenumi}{(\alph{enumi})}

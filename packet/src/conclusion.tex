@@ -1,19 +1,7 @@
 \section{Beyond secret sharing}
 
-Congratulations on making it through this packet! You have not only 
-learned about secret sharing, a building block for many other cryptographic 
-primitives that are used in the real world\footnotemark, but have also
-gotten a glimpse into what modern cryptography research looks like. 
-The same definitions and proof techniques you saw in this packet pop 
-up in many other areas of cryptography, and you now have a head start in 
-understanding the techniques in many other subfields.
+Secret sharing is not only interesting on its own, as you have seen in this packet and the Colab notebook, but it is also a crucial building block for many other cryptographic primitives used in the real world. One of the most important applications of secret sharing is \emph{multiparty computation (MPC)}. MPC allows multiple parties to compute some function over their secret inputs. For example, if Alice, Bob, and Charlie want to learn which of them makes the most money, they could tell their salaries to a trusted third party (their trusted friend Thomas), and Thomas could compute the maximum salary and output it. In the real world, though, we don't always have a third party we can trust, so MPC allows Alice, Bob, and Charlie to \emph{simulate} the trusted third party by only exchanging messages with each other. The messages reveal nothing to the others about each of their inputs (secret sharing helps with this!) and at the end they still learn the correct output.
 
-\footnotetext{Most notably, secret sharing forms the basis of many 
-\emph{multiparty computation (MPC)} schemes. These allow multiple 
-parties to compute functions over their secret 
-inputs. For example, the Boston Women’s Workforce Council organized 
-an effort in which companies used MPC\cite[page 12]{bwwc} to calculate statistics 
-about the salaries of the workforce in approximately 16\% of the Boston area, 
-showing that the gender pay gap was wider than what the U.S. Bureau of Labor
-Statistics reported\cite{bwwc}. MPC was necessary because companies needed 
-to keep their data on employee salaries secret due to privacy concerns.}
+In a more realistic application of MPC, the Boston Women’s Workforce Council organized an effort in which companies used MPC\cite[page 12]{bwwc} to calculate statistics about the salaries of the workforce in approximately 16\% of the Boston area, showing that the gender pay gap was wider than what the U.S. Bureau of Labor Statistics reported\cite{bwwc}. MPC was necessary because companies needed to keep their data on employee salaries secret due to privacy concerns.
+
+Congratulations on making it through this packet! You have not only learned about secret sharing and some of its applications, but have also gotten a glimpse into what modern cryptography research looks like. The same definitions and proof techniques you saw in this packet pop up in many other areas of cryptography, and you now have a head start in understanding the techniques in many other subfields.

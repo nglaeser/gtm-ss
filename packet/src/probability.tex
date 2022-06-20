@@ -97,6 +97,8 @@ vice versa), we can add their probabilities:
     &= \frac{1}{2} + \frac{1}{2} = 1
 \end{align*}
 
+A quick aside about notation: going forward, when it is clear from context what random variable we are referring to, we'll leave the random variable out of our probability expressions. For example, instead of writing $\Pr[c=H]$ we'll just write $\Pr[H]$.
+
 \setlength\fboxsep{1em}        
 \begin{center}
 \fbox{
@@ -158,7 +160,7 @@ read as ``the probability of $A$ given $B$''.
 For example, it's more likely to be raining if the sky is cloudy 
 than if it's clear. We can write this as
 \[
-    \Pr[\text{raining} \mid \text{cloudy sky}] >
+    \Pr[\text{raining} \mid \text{cloudy sky}] \geq
     \Pr[\text{raining} \mid \text{clear sky}]
 \]
 
@@ -603,7 +605,7 @@ the same distribution! Therefore $d_1$ and $d_2$ are perfectly indistinguishable
 
 As we'll see, randomness plays an extremely important role in modern cryptographic
 schemes. A cryptographic \emph{scheme} is a well-defined procedure for accomplishing 
-some some \emph{cryptographic primitive} (a general concept with desirable properties, like a sort of ``blueprint''). For example, the Caesar 
+some \emph{cryptographic primitive} (a general concept with desirable properties, like a sort of ``blueprint''). For example, the Caesar 
 cipher is an encryption scheme\footnotemark, meaning it is a procedure for accomplishing
 the cryptographic primitive of encryption. 
 In the rest of this packet, you'll learn about several \emph{secret sharing} schemes.

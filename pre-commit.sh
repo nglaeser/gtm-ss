@@ -7,7 +7,7 @@ git stash save -q --keep-index $STASH_NAME
 # do the stuff
 jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace */*.ipynb
 # stage the updates
-git add .
+git add *.ipynb
 
 # pop the stash to return repo to previous condition
 STASHES=$(git stash list)
