@@ -27,7 +27,7 @@ probability one-half.
         \footnotetext[2]{
             \url{https://www.statista.com/statistics/236550/percentage-of-us-population-that-own-a-iphone-smartphone/}
         }
-        \item The distribution over the outcomes of a dice roll $\{1,2,3,4,5,6\}$
+        \item The distribution over the outcomes $\{1,2,3,4,5,6\}$ of a dice roll
         is $\{\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6},\frac{1}{6}\}$.
     \end{enumerate}
 \end{example}
@@ -38,8 +38,7 @@ probability one-half.
     \renewcommand{\labelenumi}{(\alph{enumi})} 
     \begin{enumerate}
         \item Card drawn from a shuffled deck.
-        \item Whether or not a student is registered for classes at a 2000-person high school 
-        where all but 100 students register for classes every year.
+        \item Whether or not a student is registered for classes at a 2000-person high school where all but 100 students register for classes every year.
     \end{enumerate}
 \end{exercise}
 
@@ -117,18 +116,16 @@ in the sample space. If the sum was less than 1, it
 would mean that there's some other event that could happen instead, so the sample space
 is incomplete.
 
-The pie charts below illustrate this idea. On the left is the probability 
-distribution of a coin toss; on the right, the probability distribution 
-of a dice roll. Notice that in both cases, the probabilities sum to 1.
-
-\begin{figure}[h]
-    \includegraphics[width=.5\linewidth]{imgs/coin-pie.png}
-    \includegraphics[width=.5\linewidth]{imgs/die-pie.png}
-    % \caption{Left: probability distribution of a coin toss. Right: 
-    % probability distribution of a dice roll. Probabilities always 
-    % sum to 1.}
+\begin{figure}[hb]
+    \centering
+    \includegraphics[width=.45\linewidth]{imgs/coin-pie.png}
+    \includegraphics[width=.45\linewidth]{imgs/die-pie.png}
     \label{fig:pies}
   \end{figure}
+
+The pie charts above illustrate this idea. On the left is the probability 
+distribution of a coin toss; on the right, the probability distribution 
+of a dice roll. Notice that in both cases, the probabilities sum to 1.
 
 When two events are not mutually exclusive, however, we can't add 
 their probabilities. For example, what's the probability of rolling a 
@@ -150,7 +147,7 @@ events ($\{2,4,6\}$ or $\{3\}$) instead of overlapping events ($\{2, 4,
 
 where $d$ is the random variable representing the outcome of the die roll.
 
-\hfill\\
+\bigskip
 
 Conditional probability is the probability that something occurs 
 \emph{assuming that another event has already happened}. This is written with the symbol 
@@ -350,7 +347,7 @@ Let's see some concrete examples next.
             \end{tikzpicture}
             \end{center}
 
-            Now exactly one number, 11, is in both $A$ and $B$, so $\Pr[A \text{ and } 
+            Now exactly one number, 11, is in both $A$ and $B$, so $\Pr[A \text{ and }\allowbreak 
             B] = \frac{1}{16}$. Thus $\Pr[A \mid B] = \frac{1}{16} \div \frac{1}{2}
             = \frac{1}{8}$. Visually, we notice that $A$ in fact occupies one-eighth
             of $B$'s space.

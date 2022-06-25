@@ -169,11 +169,14 @@ but so do many other degree-2 polynomials:
 \addplot[domain=-1:5,samples=50,mark=none,thick]{x^2-4*x+3};
 % other degree-2 polys through these points
 %%% BW VERSION %%%%%%
-% \addplot[domain=-1:5,samples=50,mark=none,dotted]{-(x^2-4*x+3)+6};
-% \addplot[domain=-1:5,samples=50,mark=none,dotted]{x^2/4-x+3};
+\ifbw
+\addplot[domain=-1:5,samples=50,mark=none,dashed]{-(x^2-4*x+3)+6};
+\addplot[domain=-1:5,samples=50,mark=none,dashed]{x^2/4-x+3};
+\else
 %%% COLOR VERSION %%%%%
 \addplot[domain=-1:5,samples=50,mark=none,magenta]{-(x^2-4*x+3)+6};
 \addplot[domain=-1:5,samples=50,mark=none,cyan]{x^2/4-x+3};
+\fi
 % points (on top)
 \node (point1) at (axis cs: 0,3) {\textbullet};
 \node [above right,font=\small] at (point1) {$(0,3)$};
@@ -181,8 +184,8 @@ but so do many other degree-2 polynomials:
 \node [above left,font=\small] at (point2) {$(4,3)$};
 \end{axis}
 \node [font=\small] at (8,5) {$f(x)=x^2-4x+3$};
-\node [font=\small,magenta] at (-1,1.3) {$f(x)=-x^2+4x+3$};
-\node [font=\small,cyan] at (8,3.3) {$f(x)=\frac{1}{4}x^2-x+3$};
+\node [font=\small,\ifbw\else magenta\fi] at (-1,1.3) {$f(x)=-x^2+4x+3$};
+\node [font=\small,\ifbw\else cyan\fi] at (8,3.3) {$f(x)=\frac{1}{4}x^2-x+3$};
 \end{tikzpicture}
 \end{center}
 
@@ -313,7 +316,7 @@ So, $\sum_{i=1}^{4} i = 1+2+3+4 = 10$ and $\prod_{i=1}^4 i = 1 \cdot 2 \cdot 3
         \item $\sum_{i=1}^5 2i$
         \item $\sum_{i=1}^5 1$
         \item $\sum_{i=0}^4 x_i$ where $x_i$ means the $i$th 
-        elements of the set $\{1, 5, -3, 0, 8\}$ and the numbering
+        elements of the set $\{1, 5, -3,\allowbreak 0, 8\}$ and the numbering
         starts at 0 (that is, $x_0=1$).
         \item $\sum_{i=0}^2 x_i$ for the same set.
     \end{enumerate}
@@ -323,8 +326,8 @@ So, $\sum_{i=1}^{4} i = 1+2+3+4 = 10$ and $\prod_{i=1}^4 i = 1 \cdot 2 \cdot 3
     Repeat the previous exercise, substituting $\prod$ for $\sum$.
 \end{bonus}
 
-Now, back to Lagrange interpolation. We start with a set of points $(x_0, y_0), 
-\ldots,\allowbreak (x_m, y_m)$. For each point $(x_i, y_i)$, we compute the 
+Now, back to Lagrange interpolation. We start with a set of points $(x_0, y_0),\allowbreak
+\ldots, (x_m, y_m)$. For each point $(x_i, y_i)$, we compute the 
 expression $\ell_i(x)$. For instance, for $i=2$, it will be of the form
 
 \newcommand{\cyan}[1]{\textcolor{cyan}{#1}}
@@ -414,7 +417,8 @@ Now $x=x_1=3$:
 \end{align*}
 
 Just as we deduced above! 
-\hfill\\
+
+\bigskip
 
 To return to our main task of computing $P(x)$, let's plug the expressions 
 for $\ell_0$ and $\ell_1$ back into the summation:
@@ -493,7 +497,7 @@ and again we've arrived at the same polynomial we graphed.
 
 \begin{bonus}
     Use Lagrange interpolation to find the unique degree-2 
-    polynomial through the points $\{(-1,-16),(1,-2),(2,14)\}$.
+    polynomial through the points $\{(-1,-16),(1,-2),\allowbreak (2,14)\}$.
 \end{bonus}
 
 \subsection{Sharing Secrets Using Polynomials}
@@ -519,14 +523,14 @@ to include $(t+1)$-out-of-$n$ secret sharing schemes where $t+1 \neq n$.
 \end{definition}
 
 Now we're ready to put everything we've learned together and define 
-Shamir's secret sharing scheme\footnotemark.
+\allowbreak Shamir's secret sharing scheme\footnotemark.
 \footnotetext{Adi Shamir introduced this scheme in a short 1979 
 paper entitled ``How to share a secret''\cite{shamir1979share}.
 The paper is only two pages long, so if you're feeling adventurous 
 you could have a go at it! You can find it online at 
 \url{http://web.mit.edu/6.857/OldStuff/Fall03/ref/Shamir-HowToShareASecret.pdf}.}
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 \begin{pchstack}[center]
 \fbox{%
 \procedure{$\share(s)$}{%
@@ -593,8 +597,13 @@ $y$-intercept and output that.
 \node (share1) at (axis cs: 1,17) {\textbullet};
 \node (share2) at (axis cs: 2,22) {\textbullet};
 \node (share3) at (axis cs: 3,27) {\textbullet};
-\node [magenta] (s) at (axis cs: 0,12) {\textbullet};
+\node [\ifbw\else magenta\fi] (s) at (axis cs: 0,12) {\textbullet};
+\ifbw
+\setlength{\fboxsep}{.1\fboxsep}
+\node [right,font=\small] at (s) {$\boxed{s=12}$};
+\else
 \node [right,magenta,font=\small] at (s) {$s=12$};
+\fi
 \end{axis}
 \node [right,font=\small] at (share1) {$s_1=(1,17)$};
 \node [right,font=\small] at (share2) {$s_2=(2,22)$};

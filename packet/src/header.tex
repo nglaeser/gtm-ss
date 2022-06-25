@@ -33,13 +33,14 @@
 %%%% added by NG
 \usetikzlibrary{shapes,backgrounds,decorations,patterns}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
 \usepackage{xurl}
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \usepackage{colortbl}
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
 % externalize the figures
-% \usepgfplotslibrary{external
+% \usepgfplotslibrary{external}
 % \tikzexternalize
 
 % Crypto commands
@@ -62,7 +63,7 @@
 %%% Exercises & Examples
 \newcounter{exercise}[section]
 \newenvironment{exercise}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
-    \noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\par\bigskip}
+    \noindent \textbf{Exercise~\thesection.\theexercise }  \rmfamily}{\end{quotation}\hfill\par\bigskip}
 \newcommand{\exref}[1]{\hyperref[#1]{\thesection.\ref*{#1}}}
 
 \newenvironment{bonus}{\refstepcounter{exercise}\par\bigskip \begin{quotation}{}{\leftmargin .25in\rightmargin .25in}
