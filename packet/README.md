@@ -1,6 +1,8 @@
 # Packet: Cryptographic Secret Sharing
-*[Girls Talk Math Camp 2021](http://gtm.math.umd.edu/virtualcamp2021.html) at UMD*
+*[Girls Talk Math Camp 2022](http://gtm.math.umd.edu/camp2022.html) at UMD*
 
 - **[Packet](main.pdf)** ([source](main.tex)). Black-and-white version [here](main-bw.pdf).
 - **[Answers](answers.pdf)** ([source](answers.tex)). Black-and-white version [here](answers-bw.pdf).
 - **[Jupyter Notebook](https://colab.research.google.com/drive/18NxRFaAb3H65EaUUPwlHN7pQFXYvsy6n?usp=sharing)** ([source](../spring/ShamirSS.ipynb)): Jupyter notebook for interactive portion; currently links to the spring event version.
+
+> In this problem set, you will learn how to use math to share a secret among a group of people so that they have to work together to learn the secret. This is the cryptographic technique known as secret sharing and is one of the fundamental building blocks of secure multi-party computation, or MPC. MPC is used by many companies like Amazon, Google, and the cryptocurrency Zcash to do computations over secret or private data. This makes MPC incredibly versatile, since it can do anything from allowing hospitals to improve the accuracy of their diagnoses by pooling their private medical data without ever revealing it, to enabling a large-scale analysis of the gender pay gap by computing over private salary data (an example we discuss in the packet). Since most MPC is based on secret sharing, you’ll learn an important building block and see firsthand how cryptography lets us achieve seemingly impossible things. As a bonus, you can even try your hand at writing a mathematical proof of security, thereby learning techniques that cryptographers everywhere use to mathematically guarantee the security and privacy of our online infrastructure.
